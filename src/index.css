@@ -1192,6 +1192,77 @@ footer::before {
     }
 }
 
+@media (max-width: 480px) {
+    /* Narrower mobile phones */
+    .container {
+        padding: 4rem 1.25rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Small adjustments for project cards */
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card .card-image-wrapper {
+        height: 180px;
+    }
+
+    /* Adjust header for very small screens */
+    header {
+        width: 100%;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        max-width: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        background-color: rgba(26, 31, 58, 0.85); /* Slightly more opaque */
+    }
+
+    header.scrolled {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        max-width: none;
+    }
+    
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    /* Timeline padding on small screens */
+    .timeline-item {
+        padding-left: 50px;
+        padding-right: 10px;
+    }
+
+    .timeline::after {
+        left: 20px;
+    }
+
+    .timeline-item.left::after,
+    .timeline-item.right::after {
+        left: 10px;
+    }
+    
+    .blob {
+        opacity: 0.4; /* Fade blobs better readability */
+    }
+    
+    .arsenal-card {
+        padding: 1.5rem;
+    }
+}
+
 /* Custom Cursor */
 body {
     cursor: none;
@@ -1239,6 +1310,21 @@ button,
 .project-card,
 .glass-card {
     cursor: none;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .cursor, .cursor-follower {
+        display: none;
+    }
+    
+    body {
+        cursor: auto;
+    }
+
+    a, button, .btn, .project-card, .glass-card {
+        cursor: pointer;
+    }
 }
 
 /* System Boot Loader */
