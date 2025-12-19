@@ -288,21 +288,22 @@ export default function Portfolio() {
                     <div className="project-grid">
 
 
+
                         <div className="project-card glass-card" style={{ transitionDelay: '300ms' }}>
                             <div className="card-image-wrapper">
-                                <img src="https://placehold.co/600x400/0A0E27/FF6B35?text=Budget+Buddy&font=montserrat"
-                                    alt="Budget Buddy Project" />
+                                <img src="https://placehold.co/600x400/0A0E27/00FF88?text=Neon+Duel&font=montserrat"
+                                    alt="Neon Duel Project" />
                                 <div className="scanline"></div>
                                 <div className="card-actions">
-                                    <button className="view-btn">View Project</button>
+                                    <a href="https://neon-fire.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none', lineHeight: '2.5' }}>View Project</a>
                                 </div>
                             </div>
                             <div className="project-info">
-                                <h3>Track my budget</h3>
-                                <p>A smart financial tracking tool designed to help you monitor expenses, set budgets, and achieve
-                                    your financial goals with ease.</p>
+                                <h3>Neon Duel</h3>
+                                <p>A high-energy multiplayer arena game featuring intense neon aesthetics and real-time combat gameplay.</p>
                             </div>
                         </div>
+
                         <div className="project-card glass-card" style={{ transitionDelay: '450ms' }}>
                             <div className="card-image-wrapper">
                                 <img src="https://placehold.co/600x400/1A1F3A/00D9FF?text=Perpetual+Achiever&font=montserrat"
