@@ -294,12 +294,12 @@ export default function Portfolio() {
                                 <img src="https://placehold.co/600x400/0A0E27/00FF88?text=Neon+Duel&font=montserrat"
                                     alt="Neon Duel Project" />
                                 <div className="scanline"></div>
-                                <div className="card-actions">
-                                    <a href="https://neon-fire.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none', lineHeight: '2.5' }}>View Project</a>
-                                </div>
                             </div>
                             <div className="project-info">
-                                <h3>Neon Duel</h3>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                    <h3 style={{ marginBottom: 0 }}>Neon Duel</h3>
+                                    <a href="https://neon-fire.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
+                                </div>
                                 <p>A high-energy multiplayer arena game featuring intense neon aesthetics and real-time combat gameplay.</p>
                             </div>
                         </div>
@@ -309,12 +309,12 @@ export default function Portfolio() {
                                 <img src="https://placehold.co/600x400/1A1F3A/00D9FF?text=Perpetual+Achiever&font=montserrat"
                                     alt="The Perpetual Achiever Project" />
                                 <div className="scanline"></div>
-                                <div className="card-actions">
-                                    <a href="https://perpectual-archiver.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none', lineHeight: '2.5' }}>View Project</a>
-                                </div>
                             </div>
                             <div className="project-info">
-                                <h3>The Perpetual Achiever</h3>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                    <h3 style={{ marginBottom: 0 }}>The Perpetual Achiever</h3>
+                                    <a href="https://perpectual-archiver.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
+                                </div>
                                 <p>A comprehensive digital manuscript and personal development platform exploring goal setting, systems thinking, and sustainable success strategies.</p>
                             </div>
                         </div>

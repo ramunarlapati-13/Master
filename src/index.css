@@ -574,10 +574,7 @@ nav a.active::after {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: rgba(10, 14, 39, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -590,20 +587,22 @@ nav a.active::after {
 }
 
 .view-btn {
-    padding: 0.6rem 1.5rem;
-    background: rgba(0, 217, 255, 0.1);
-    border: 1px solid var(--accent-blue);
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 217, 255, 0.4);
     color: var(--accent-blue);
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .view-btn::before {
@@ -611,16 +610,24 @@ nav a.active::after {
     position: absolute;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 200%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
-    transition: left 0.4s;
+    background: linear-gradient(120deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 60%,
+            transparent 100%);
+    transition: left 0.6s;
+    transform: skewX(-15deg);
 }
 
 .view-btn:hover {
-    background: var(--accent-blue);
-    color: var(--primary-dark);
-    box-shadow: 0 0 15px var(--glow-blue);
+    background: rgba(0, 217, 255, 0.2);
+    border-color: var(--accent-blue);
+    color: white;
+    box-shadow: 0 0 20px var(--glow-blue), inset 0 0 5px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 .view-btn:hover::before {
