@@ -205,6 +205,7 @@ export default function Portfolio() {
                     <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
                     <a href="#timeline" onClick={() => setMenuOpen(false)}>Timeline</a>
                     <a href="#arsenal" onClick={() => setMenuOpen(false)}>Arsenal</a>
+                    <a href="#extra-curricular" onClick={() => setMenuOpen(false)}>Activities</a>
                     <a href="#connect" onClick={() => setMenuOpen(false)}>Connect</a>
                 </nav>
                 <button
@@ -302,7 +303,20 @@ export default function Portfolio() {
                                     your financial goals with ease.</p>
                             </div>
                         </div>
-
+                        <div className="project-card glass-card" style={{ transitionDelay: '450ms' }}>
+                            <div className="card-image-wrapper">
+                                <img src="https://placehold.co/600x400/1A1F3A/00D9FF?text=Perpetual+Achiever&font=montserrat"
+                                    alt="The Perpetual Achiever Project" />
+                                <div className="scanline"></div>
+                                <div className="card-actions">
+                                    <a href="https://perpectual-archiver.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none', lineHeight: '2.5' }}>View Project</a>
+                                </div>
+                            </div>
+                            <div className="project-info">
+                                <h3>The Perpetual Achiever</h3>
+                                <p>A comprehensive digital manuscript and personal development platform exploring goal setting, systems thinking, and sustainable success strategies.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -364,6 +378,30 @@ export default function Portfolio() {
                                 <li>IOT</li>
                                 <li>Generative AI for All</li>
                             </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="extra-curricular" className="container fade-in-section">
+                    <h2 className="section-title">Extra Curricular</h2>
+                    <div className="project-grid">
+                        <div className="project-card glass-card">
+                            <div className="project-info">
+                                <h3>Technical Content Creation</h3>
+                                <p>Authored "The Perpetual Achiever", a comprehensive guide on personal development and systems thinking, demonstrating strong communication and analytical skills.</p>
+                            </div>
+                        </div>
+                        <div className="project-card glass-card">
+                            <div className="project-info">
+                                <h3>Community Engagement</h3>
+                                <p>Active participant in technical communities, engaging in knowledge sharing and collaborative learning environments to foster mutual growth.</p>
+                            </div>
+                        </div>
+                        <div className="project-card glass-card">
+                            <div className="project-info">
+                                <h3>Continuous Learning</h3>
+                                <p>Dedicated to self-improvement through extensive reading (e.g., "Deep Work") and exploring emerging technologies like Generative AI.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
