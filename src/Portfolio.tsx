@@ -3,7 +3,6 @@ import { SocialIcons } from './components/ui/social-icons';
 import InteractiveBentoGallery from './components/ui/interactive-bento-gallery';
 import { Certifications } from './components/ui/certifications';
 import { RandomColorHoverText } from './components/ui/random-color-text';
-import { BlogsSection } from './components/ui/blogs-section';
 
 
 const LottiePlayer = 'lottie-player' as any;
