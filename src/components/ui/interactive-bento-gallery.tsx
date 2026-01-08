@@ -351,7 +351,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                     />
                 ) : (
                     <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px]"
+                        className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4"
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
@@ -367,13 +367,12 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                             <motion.div
                                 key={item.id}
                                 layoutId={`media-${item.id}`}
-                                className={`relative overflow-hidden rounded-xl cursor-move ${item.span}`}
+                                className="relative overflow-hidden rounded-xl cursor-move mb-4 break-inside-avoid w-full inline-block group"
                                 onClick={() => !isDragging && setSelectedItem(item)}
                                 variants={{
-                                    hidden: { y: 50, scale: 0.9, opacity: 0 },
+                                    hidden: { y: 20, opacity: 0 },
                                     visible: {
                                         y: 0,
-                                        scale: 1,
                                         opacity: 1,
                                         transition: {
                                             type: "spring",
@@ -383,7 +382,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                         }
                                     }
                                 }}
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.02, zIndex: 10 }}
                                 drag
                                 dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
                                 dragElastic={1}
@@ -405,24 +404,19 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                             >
                                 <MediaItem
                                     item={item}
-                                    className="absolute inset-0 w-full h-full object-cover"
+                                    className="w-full h-auto object-cover block"
                                     onClick={() => !isDragging && setSelectedItem(item)}
                                 />
                                 <motion.div
-                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4"
-                                    initial={{ opacity: 0 }}
-                                    whileHover={{ opacity: 1 }}
-                                    transition={{ duration: 0.2 }}
+                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                                 >
-                                    <div className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                                        <h3 className="relative text-white text-xs sm:text-sm md:text-base font-medium line-clamp-1">
-                                            {item.title}
-                                        </h3>
-                                        <p className="relative text-white/70 text-[10px] sm:text-xs md:text-sm mt-0.5 line-clamp-2">
-                                            {item.desc}
-                                        </p>
-                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                                    <h3 className="relative text-white text-xs sm:text-sm md:text-base font-medium line-clamp-1">
+                                        {item.title}
+                                    </h3>
+                                    <p className="relative text-white/70 text-[10px] sm:text-xs md:text-sm mt-0.5 line-clamp-2">
+                                        {item.desc}
+                                    </p>
                                 </motion.div>
                             </motion.div>
                         ))}
