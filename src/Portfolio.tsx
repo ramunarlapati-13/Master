@@ -317,7 +317,7 @@ export default function Portfolio() {
 
                         <div className="project-card glass-card" style={{ transitionDelay: '450ms' }}>
                             <div className="card-image-wrapper">
-                                <img src="https://placehold.co/600x400/1A1F3A/00D9FF?text=Perpetual+Achiever&font=montserrat"
+                                <img src="/perpetual-achiever-screenshot.png"
                                     alt="The Perpetual Achiever Project" />
                                 <div className="scanline"></div>
                             </div>
@@ -327,6 +327,21 @@ export default function Portfolio() {
                                     <a href="https://perpectual-archiver.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
                                 </div>
                                 <p>A comprehensive digital manuscript and personal development platform exploring goal setting, systems thinking, and sustainable success strategies.</p>
+                            </div>
+                        </div>
+
+                        <div className="project-card glass-card" style={{ transitionDelay: '600ms' }}>
+                            <div className="card-image-wrapper">
+                                <img src="/thingspeak-viewer-screenshot.png"
+                                    alt="ThingSpeak Viewer Project" />
+                                <div className="scanline"></div>
+                            </div>
+                            <div className="project-info">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                                    <h3 style={{ marginBottom: 0 }}>ThingSpeak Viewer</h3>
+                                    <a href="https://thingspeak-viewer.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
+                                </div>
+                                <p>A real-time IoT dashboard for monitoring sensor data from ThingSpeak channels with dynamic visualization capabilities.</p>
                             </div>
                         </div>
                     </div>
@@ -480,7 +495,7 @@ export default function Portfolio() {
             </main>
 
             <footer>
-                <p>&copy; 2025 Narlapati Ramu. All Rights Reserved.</p>
+                <p>&copy; 2026 Narlapati Ramu. All Rights Reserved.</p>
             </footer>
         </>
     );
