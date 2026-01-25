@@ -103,7 +103,7 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
                     style={{
                         opacity: isBuffering ? 0.8 : 1,
                         transition: 'opacity 0.2s',
-                        transform: 'translateZ(0)',
+                        transform: 'translate3d(0, 0, 0)',
                         willChange: 'transform',
                     }}
                 >
@@ -315,8 +315,8 @@ interface InteractiveBentoGalleryProps {
 
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
     const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
-    const [items, setItems] = useState(mediaItems);
-    const [isDragging, setIsDragging] = useState(false);
+    const [items] = useState(mediaItems);
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -362,13 +362,15 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                 transition: { staggerChildren: 0.1 }
                             }
                         }}
+                        onMouseLeave={() => setHoveredId(null)}
                     >
                         {items.map((item, index) => (
                             <motion.div
                                 key={item.id}
                                 layoutId={`media-${item.id}`}
-                                className="relative overflow-hidden rounded-xl cursor-move mb-4 break-inside-avoid w-full inline-block group"
-                                onClick={() => !isDragging && setSelectedItem(item)}
+                                className="relative overflow-hidden rounded-xl cursor-zoom-in mb-4 break-inside-avoid w-full inline-block group"
+                                onClick={() => setSelectedItem(item)}
+                                onMouseEnter={() => setHoveredId(item.id)}
                                 variants={{
                                     hidden: { y: 20, opacity: 0 },
                                     visible: {
@@ -382,30 +384,21 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                         }
                                     }
                                 }}
-                                whileHover={{ scale: 1.02, zIndex: 10 }}
-                                drag
-                                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                                dragElastic={1}
-                                onDragStart={() => setIsDragging(true)}
-                                onDragEnd={(_, info) => {
-                                    setIsDragging(false);
-                                    const moveDistance = info.offset.x + info.offset.y;
-                                    if (Math.abs(moveDistance) > 50) {
-                                        const newItems = [...items];
-                                        const draggedItem = newItems[index];
-                                        const targetIndex = moveDistance > 0 ?
-                                            Math.min(index + 1, items.length - 1) :
-                                            Math.max(index - 1, 0);
-                                        newItems.splice(index, 1);
-                                        newItems.splice(targetIndex, 0, draggedItem);
-                                        setItems(newItems);
-                                    }
+                                animate={{
+                                    filter: hoveredId !== null && hoveredId !== item.id ? "blur(4px)" : "blur(0px)",
+                                    opacity: hoveredId !== null && hoveredId !== item.id ? 0.5 : 1,
+                                    scale: hoveredId === item.id ? 1.05 : 1,
                                 }}
+                                transition={{
+                                    duration: 0.3,
+                                    ease: "easeInOut"
+                                }}
+                                whileHover={{ zIndex: 10 }}
                             >
                                 <MediaItem
                                     item={item}
                                     className="w-full h-auto object-cover block"
-                                    onClick={() => !isDragging && setSelectedItem(item)}
+                                    onClick={() => setSelectedItem(item)}
                                 />
                                 <motion.div
                                     className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200"

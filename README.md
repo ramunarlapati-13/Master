@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# Narlapati Ramu - Professional Portfolio 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, premium engineering portfolio showcasing the work and expertise of **Narlapati Ramu**, an Electrical and Electronics Engineer specializing in IoT, Automation, and Modern Web Technologies.
 
-Currently, two official plugins are available:
+## 🌟 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Interactive Projects Showcase**: A sequential 3x3 grid layout using custom-built premium `InfoCard` components with hardware-accelerated animations and dynamic glow effects.
+-   **High-End Interactive Gallery**: A bento-style media gallery featuring hover-blur effects, modal views, and industrial visit highlights.
+-   **Custom Cursor & Smooth Experience**: A tailored high-performance cursor system and GPU-accelerated transitions for a buttery-smooth UX.
+-   **Technical Arsenal**: Comprehensive breakdown of core skills, modern tech stack (React, TypeScript, Firebase), and certifications.
+-   **Mobile First & Responsive**: Optimized for all screen sizes with adaptive layouts and touch-friendly controls.
+-   **Premium Aesthetics**: Modern dark mode design featuring glassmorphism, animated circuit backgrounds, and floating neural particles.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla CSS with Premium Animations
+-   **Components**: [Framer Motion](https://www.framer.com/motion/) for fluid animations
+-   **Icons**: [Lucide React](https://lucide.dev/)
+-   **Deployment**: Optimized for platforms like Vercel/Netlify
 
-## Expanding the ESLint configuration
+## 🚀 Projects Included
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **AIO REXPO QR**: Professional QR Generator and Bio-Link platform with Firebase integration.
+2.  **Neon Duel**: High-energy multiplayer arena game with real-time combat.
+3.  **The Perpetual Achiever**: Personal development and systems thinking digital platform.
+4.  **ThingSpeak Viewer**: Real-time IoT dashboard for sensor data monitoring.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔧 Installation & Local Development
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/ramunarlapati-13/Master.git
+    cd Master
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📬 Connect
+
+-   **LinkedIn**: [ramunarlapati](https://linkedin.com/in/ramunarlapati)
+-   **GitHub**: [ramunarlapati-13](https://github.com/ramunarlapati-13)
+-   **Portfolio**: [narlapatiramu.vercel.app](https://narlapatiramu.vercel.app/)
+
+---
+Designed & Developed by **Narlapati Ramu** | 2026

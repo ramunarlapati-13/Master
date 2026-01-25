@@ -1,13 +1,34 @@
 import { useEffect, useRef, useState } from 'react';
+import { InfoCard } from './components/ui/info-card';
 import { SocialIcons } from './components/ui/social-icons';
 import InteractiveBentoGallery from './components/ui/interactive-bento-gallery';
 import { Certifications } from './components/ui/certifications';
 import { RandomColorHoverText } from './components/ui/random-color-text';
 
+const containerStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+    gap: 24,
+    padding: 24,
+    width: "100%",
+    maxWidth: "1250px",
+    margin: "0 auto",
+};
 
-const LottiePlayer = 'lottie-player' as any;
-
-
+const fileContainerStyle: React.CSSProperties = {
+    width: "100%",
+    maxWidth: 388,
+    height: 378,
+    borderRadius: "1em",
+    position: "relative",
+    overflow: "hidden",
+    padding: 0,
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    boxSizing: "border-box",
+};
 
 export default function Portfolio() {
     const [loading, setLoading] = useState(true);
@@ -75,10 +96,9 @@ export default function Portfolio() {
         };
 
         const animateCursor = () => {
-            posX += (mouseX - posX) / 9;
-            posY += (mouseY - posY) / 9;
-            follower.style.left = posX + 'px';
-            follower.style.top = posY + 'px';
+            posX += (mouseX - posX) * 0.15;
+            posY += (mouseY - posY) * 0.15;
+            follower.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
             animationFrameId = requestAnimationFrame(animateCursor);
         };
 
@@ -198,12 +218,11 @@ export default function Portfolio() {
                 <div className="blob blob3"></div>
             </div>
 
-            <div className="floating-element" style={{ top: '20%', left: '10%', animationDelay: '0s' }}></div>
-            <div className="floating-element" style={{ top: '40%', right: '15%', animationDelay: '2s' }}></div>
-            <div className="floating-element" style={{ top: '60%', left: '20%', animationDelay: '4s' }}></div>
-            <div className="floating-element" style={{ bottom: '30%', right: '25%', animationDelay: '6s' }}></div>
-            <div className="floating-element" style={{ top: '80%', left: '30%', animationDelay: '1s' }}></div>
-            <div className="floating-element" style={{ top: '50%', right: '35%', animationDelay: '3s' }}></div>
+            <div className="floating-elements-container">
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className={`floating-element element-${i + 1}`}></div>
+                ))}
+            </div>
 
             <header id="header">
                 <h1>Narlapati <span>Ramu</span></h1>
@@ -269,7 +288,7 @@ export default function Portfolio() {
                                 productivity.</p>
                             <div className="tech-stats">
                                 <div className="stat-box">
-                                    <div className="number">4+</div>
+                                    <div className="number">5+</div>
                                     <div className="label">Projects</div>
                                 </div>
                                 <div className="stat-box">
@@ -296,53 +315,106 @@ export default function Portfolio() {
                             transform="rotate(45 80 20)" />
                     </svg>
                     <h2 className="section-title">Projects Showcase</h2>
-                    <div className="project-grid">
+                    <div style={containerStyle}>
 
-
-
-                        <div className="project-card glass-card" style={{ transitionDelay: '300ms' }}>
-                            <div className="card-image-wrapper">
-                                <img src="https://placehold.co/600x400/0A0E27/00FF88?text=Neon+Duel&font=montserrat"
-                                    alt="Neon Duel Project" />
-                                <div className="scanline"></div>
-                            </div>
-                            <div className="project-info">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                    <h3 style={{ marginBottom: 0 }}>Neon Duel</h3>
-                                    <a href="https://neon-fire.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
-                                </div>
-                                <p>A high-energy multiplayer arena game featuring intense neon aesthetics and real-time combat gameplay.</p>
-                            </div>
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-blue)",
+                            }}
+                            onClick={() => window.open('https://aioqr.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="/images/aioqr-dashboard.png"
+                                title="AIO REXPO QR"
+                                description="A professional QR Generator and Bio-Link platform with Firebase integration, featuring high-performance React optimization and persistent cloud profiles."
+                                borderColor="var(--accent-blue)"
+                                borderBgColor="rgba(0, 217, 255, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-blue)"
+                                effectBgColor="var(--glow-blue)"
+                                patternColor1="var(--accent-blue)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
                         </div>
 
-                        <div className="project-card glass-card" style={{ transitionDelay: '450ms' }}>
-                            <div className="card-image-wrapper">
-                                <img src="/perpetual-achiever-screenshot.png"
-                                    alt="The Perpetual Achiever Project" />
-                                <div className="scanline"></div>
-                            </div>
-                            <div className="project-info">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                    <h3 style={{ marginBottom: 0 }}>The Perpetual Achiever</h3>
-                                    <a href="https://perpectual-archiver.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
-                                </div>
-                                <p>A comprehensive digital manuscript and personal development platform exploring goal setting, systems thinking, and sustainable success strategies.</p>
-                            </div>
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-green)",
+                            }}
+                            onClick={() => window.open('https://neon-fire.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="https://placehold.co/600x400/0A0E27/00FF88?text=Neon+Duel&font=montserrat"
+                                title="Neon Duel"
+                                description="A high-energy multiplayer arena game featuring intense neon aesthetics and real-time combat gameplay."
+                                borderColor="var(--accent-green)"
+                                borderBgColor="rgba(0, 255, 136, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-green)"
+                                effectBgColor="var(--glow-green)"
+                                patternColor1="var(--accent-green)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
                         </div>
 
-                        <div className="project-card glass-card" style={{ transitionDelay: '600ms' }}>
-                            <div className="card-image-wrapper">
-                                <img src="/thingspeak-viewer-screenshot.png"
-                                    alt="ThingSpeak Viewer Project" />
-                                <div className="scanline"></div>
-                            </div>
-                            <div className="project-info">
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                                    <h3 style={{ marginBottom: 0 }}>ThingSpeak Viewer</h3>
-                                    <a href="https://thingspeak-viewer.vercel.app/" target="_blank" className="view-btn" style={{ textDecoration: 'none' }}>View Project</a>
-                                </div>
-                                <p>A real-time IoT dashboard for monitoring sensor data from ThingSpeak channels with dynamic visualization capabilities.</p>
-                            </div>
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-orange)",
+                            }}
+                            onClick={() => window.open('https://perpectual-archiver.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="/perpetual-achiever-screenshot.png"
+                                title="The Perpetual Achiever"
+                                description="A comprehensive digital manuscript and personal development platform exploring goal setting, systems thinking, and sustainable success strategies."
+                                borderColor="var(--accent-orange)"
+                                borderBgColor="rgba(255, 107, 53, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-orange)"
+                                effectBgColor="rgba(255, 107, 53, 0.1)"
+                                patternColor1="var(--accent-orange)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
+                        </div>
+
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-blue)",
+                            }}
+                            onClick={() => window.open('https://thingspeak-viewer.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="/thingspeak-viewer-screenshot.png"
+                                title="ThingSpeak Viewer"
+                                description="A real-time IoT dashboard for monitoring sensor data from ThingSpeak channels with dynamic visualization capabilities."
+                                borderColor="var(--accent-blue)"
+                                borderBgColor="rgba(0, 217, 255, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-blue)"
+                                effectBgColor="var(--glow-blue)"
+                                patternColor1="var(--accent-blue)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
                         </div>
                     </div>
                 </section>
@@ -392,11 +464,12 @@ export default function Portfolio() {
                         <div className="arsenal-card glass-card">
                             <h3>Technology Stack</h3>
                             <ul>
-                                <li>Arduino Development</li>
-                                <li>C / C++</li>
-                                <li>Python</li>
                                 <li>HTML, CSS, JavaScript</li>
-                                <li>Next.js</li>
+                                <li>TypeScript</li>
+                                <li>Next.js, Vite</li>
+                                <li>Python, C / C++</li>
+                                <li>Firebase, Firestore</li>
+                                <li>Arduino Development</li>
                             </ul>
                         </div>
                         <div className="arsenal-card glass-card">
@@ -437,6 +510,14 @@ export default function Portfolio() {
                 <section className="container fade-in-section mt-16 mb-16">
                     <InteractiveBentoGallery
                         mediaItems={[
+                            {
+                                id: 12,
+                                type: "image",
+                                title: "AIO REXPO QR: Secure Access 🔐",
+                                desc: "Implemented Firebase Authentication for secure user logins, supporting both Google Sign-In and email/password options.",
+                                url: "/images/aioqr-login.png",
+                                span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
+                            },
                             {
                                 id: 1,
                                 type: "image",
@@ -538,11 +619,6 @@ export default function Portfolio() {
                                 <div className="flex justify-center w-full mt-4">
                                     <SocialIcons />
                                 </div>
-                            </div>
-                            <div className="connect-lottie">
-                                <LottiePlayer src="https://assets1.lottiefiles.com/packages/lf20_dhcsd5b5.json"
-                                    background="transparent" speed="1" style={{ width: '100%', maxWidth: '400px' }} loop
-                                    autoplay></LottiePlayer>
                             </div>
                         </div>
                     </div>
