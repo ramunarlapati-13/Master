@@ -230,7 +230,7 @@ export default function Portfolio() {
                     <a href="#home" className="active" onClick={() => setMenuOpen(false)}>Home</a>
                     <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
                     <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-                    <a href="https://ramu-blog.vercel.app/" onClick={() => setMenuOpen(false)}>Blogs</a>
+                    <a href="https://ramublogs.vercel.app/" onClick={() => setMenuOpen(false)}>Blogs</a>
                     <a href="#timeline" onClick={() => setMenuOpen(false)}>Timeline</a>
                     <a href="#arsenal" onClick={() => setMenuOpen(false)}>Arsenal</a>
                     <a href="#extra-curricular" onClick={() => setMenuOpen(false)}>Activities</a>
