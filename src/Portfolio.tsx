@@ -652,7 +652,7 @@ export default function Portfolio() {
                         <div className="connect-content">
                             <div className="w-full flex justify-center mb-8">
                                 <img
-                                    src="https://blush.design/api/download?shareUri=HmkSfyYk-dvRMu5E&c=Clothing_0%7Effc81a-0.2%7Eff4b33-0.3.0.0.2.0%7Eff8333&w=800&h=800&fm=png"
+                                    src="/connect-illustration.png"
                                     alt="Connect illustration"
                                     className="w-full max-w-[400px] h-auto object-contain hover:scale-105 transition-transform duration-300"
                                 />
