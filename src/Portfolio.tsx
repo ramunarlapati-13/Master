@@ -53,26 +53,19 @@ export default function Portfolio() {
             "Welcome, User."
         ];
 
-        let delay = 0;
         const timeouts: number[] = [];
 
-        const isMobile = window.innerWidth < 768;
-
-        bootMessages.forEach((msg) => {
-            const baseDelay = isMobile ? 30 : 100;
-            const randomFactor = isMobile ? 20 : 50;
-            const msgDelay = Math.random() * baseDelay + randomFactor;
-            delay += msgDelay;
-
+        bootMessages.forEach((msg, index) => {
+            const msgDelay = (index + 1) * 60; // Spread messages over ~540ms
             const timeout = setTimeout(() => {
                 setBootText(prev => [...prev, `> ${msg}`]);
-            }, delay);
+            }, msgDelay);
             timeouts.push(timeout);
         });
 
         const finishTimeout = setTimeout(() => {
             setLoading(false);
-        }, delay + (isMobile ? 300 : 800));
+        }, 800); // System ready and transitioned by 0.8s
         timeouts.push(finishTimeout);
 
         return () => timeouts.forEach(clearTimeout);
@@ -278,14 +271,14 @@ export default function Portfolio() {
                             <img src="landing-profile.png" alt="Profile photo of Narlapati Ramu" />
                         </div>
                         <div className="about-text">
-                            <h3>Dedicated to Innovation & Problem-Solving</h3>
-                            <p>I am a passionate Electrical and Electronics Engineer focused on leveraging technology to create
-                                practical solutions for real-world challenges. My journey is driven by a curiosity for
-                                automation, smart technologies, and the Internet of Things (IoT).</p>
-                            <h3>Interests</h3>
-                            <p>Outside of engineering, I enjoy exploring the world of AI, staying updated with the latest tech
-                                trends, and occasionally diving into a good book like "Deep Work" to improve focus and
-                                productivity.</p>
+                            <h3>Bridging Technology & Innovation</h3>
+                            <p>I'm <strong>Narlapati Ramu</strong>, an Electrical and Electronics Engineer passionate about building solutions at the intersection of <strong>AI, Embedded Systems, and Web Technologies</strong>. Currently learning AI for Embedded Systems and developing an <strong>Autonomous Grid Simulation</strong> prototype, I explore optimization of distributed energy loads with adaptive control.</p>
+                            <h3>What Drives Me</h3>
+                            <p>🧠 Learning AI for Embedded Systems<br />
+                                ⚡ Building Autonomous Grid Simulation prototype<br />
+                                🤝 Open to collaborations in Smart Energy & Green Tech<br />
+                                🛰 Exploring distributed energy optimization with adaptive control<br />
+                                💻 Enthusiastic about trending AI and Web development</p>
                             <div className="tech-stats">
                                 <div className="stat-box">
                                     <div className="number">5+</div>
@@ -437,6 +430,13 @@ export default function Portfolio() {
                                 <p>Completed my diploma, building a strong foundational knowledge in the field.</p>
                             </div>
                         </div>
+                        <div className="timeline-item left">
+                            <div className="timeline-content glass-card">
+                                <h3>SSC (Secondary School Certificate)</h3>
+                                <p><strong>ZPHS Marlapalem</strong> | 2021</p>
+                                <p>Completed my secondary education, laying the foundation for my engineering journey.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -515,7 +515,7 @@ export default function Portfolio() {
                                 type: "image",
                                 title: "AIO REXPO QR: Secure Access 🔐",
                                 desc: "Implemented Firebase Authentication for secure user logins, supporting both Google Sign-In and email/password options.",
-                                url: "/images/aioqr-login.png",
+                                url: "/images/aioqr-dashboard.png",
                                 span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
                             },
                             {

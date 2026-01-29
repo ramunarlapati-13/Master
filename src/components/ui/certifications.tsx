@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 
 const certifications = [
     {
+        title: "Industrial Internet Of Things (IIoT)",
+        issuer: "MyTeGen",
+        date: "Jan 2026",
+        link: "#",
+        icon: "🏭"
+    },
+    {
         title: "SRC e-solutions",
         issuer: "SRC",
         date: "Sept 2025",
