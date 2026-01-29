@@ -1,7 +1,8 @@
 "use client";
 
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
-import React, { type MouseEvent } from "react";
+import React from "react";
+import type { MouseEvent } from "react";
 import { cn } from "@/lib/utils";
 
 export const CardSpotlight = ({
