@@ -24,6 +24,35 @@
     --glow-green: rgba(0, 255, 136, 0.2);
 }
 
+[data-theme='light'] {
+    --primary-dark: #F8FAFC;
+    --secondary-dark: #FFFFFF;
+    --accent-blue: #0A84FF;
+    --accent-green: #30D158;
+    --accent-orange: #FF9F0A;
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(10, 132, 255, 0.15);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --glow-blue: rgba(10, 132, 255, 0.2);
+    --glow-green: rgba(48, 209, 88, 0.2);
+}
+
+@media (max-width: 768px) {
+    .header-actions {
+        gap: 0.8rem;
+    }
+
+    .theme-toggle-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -40,6 +69,7 @@ body {
     position: relative;
     cursor: none;
     /* Custom cursor */
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 h1,
@@ -189,6 +219,38 @@ header h1 span {
     background-clip: text;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-toggle-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--glass-border);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.theme-toggle-btn svg {
+    stroke: var(--text-primary);
+}
+
 nav a {
     color: var(--text-primary);
     margin: 0 1rem;
@@ -219,6 +281,15 @@ nav a.active {
 nav a:hover::after,
 nav a.active::after {
     width: 100%;
+}
+
+/* Section Dark Background (Excluding Landing) */
+section:not(#home),
+footer {
+    background-color: var(--primary-dark);
+    position: relative;
+    z-index: 1;
+    /* Stay above the fixed blobs/circuit */
 }
 
 /* Section Base */
@@ -259,11 +330,9 @@ nav a.active::after {
 /* Home Section */
 #home {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 0 2rem;
+    padding: 0;
     opacity: 1;
     transform: translateY(0);
 }
@@ -1121,6 +1190,17 @@ footer::before {
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
 }
 
 @media (max-width: 992px) {

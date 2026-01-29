@@ -4,20 +4,23 @@ A high-performance, premium engineering portfolio showcasing the work and expert
 
 ## 🌟 Key Features
 
+-   **Geometric Hero Animation**: A stunning landing page featuring floating geometric shapes, rotating pill elements, and ambient gradients for a high-impact first impression.
+-   **Spotlight Text Reveal**: Interactive hero text ("RAMUNARLAPATI") that utilizes a cursor-tracking spotlight to reveal a vibrant, glowing border effect.
+-   **Cursor-Following Spotlight Cards**: The Technical Arsenal section features cards with a sleek, interactive radial glow that tracks mouse movement, enhancing the premium feel.
 -   **Interactive Projects Showcase**: A sequential 3x3 grid layout using custom-built premium `InfoCard` components with hardware-accelerated animations and dynamic glow effects.
 -   **High-End Interactive Gallery**: A bento-style media gallery featuring hover-blur effects, modal views, and industrial visit highlights.
--   **Custom Cursor & Smooth Experience**: A tailored high-performance cursor system and GPU-accelerated transitions for a buttery-smooth UX.
--   **Technical Arsenal**: Comprehensive breakdown of core skills, modern tech stack (React, TypeScript, Firebase), and certifications.
--   **Mobile First & Responsive**: Optimized for all screen sizes with adaptive layouts and touch-friendly controls.
--   **Premium Aesthetics**: Modern dark mode design featuring glassmorphism, animated circuit backgrounds, and floating neural particles.
+-   **Dynamic Social Icons**: Randomized "fall-in" animations for social media icons that trigger every time they enter the viewport, adding a playful and engaging touch.
+-   **Optimized Boot Loader**: A fast-paced, terminal-style boot sequence (0.8s) that transitions seamlessly into the portfolio experience.
+-   **Mobile First & Responsive**: Fully adaptive design ensuring all premium effects—spotlight text, geometric shapes, and animations—work flawlessly on all screen sizes.
+-   **Premium Dark UI**: Deep navy and charcoal theme with glassmorphism and animated circuit backgrounds, optimized for maximum visual clarity.
 
 ## 🛠️ Tech Stack
 
 -   **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
 -   **Language**: [TypeScript](https://www.typescriptlang.org/)
 -   **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla CSS with Premium Animations
--   **Components**: [Framer Motion](https://www.framer.com/motion/) for fluid animations
--   **Icons**: [Lucide React](https://lucide.dev/)
+-   **Components**: [Framer Motion](https://www.framer.com/motion/) for complex interactive animations and spring-based physics
+-   **Icons**: [Lucide React](https://lucide.dev/) & Specialized SVG Social Assets
 -   **Deployment**: Optimized for platforms like Vercel/Netlify
 
 ## 🚀 Projects Included

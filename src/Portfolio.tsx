@@ -3,7 +3,9 @@ import { InfoCard } from './components/ui/info-card';
 import { SocialIcons } from './components/ui/social-icons';
 import InteractiveBentoGallery from './components/ui/interactive-bento-gallery';
 import { Certifications } from './components/ui/certifications';
-import { RandomColorHoverText } from './components/ui/random-color-text';
+import { SpotlightText } from './components/ui/spotlight-text';
+import { HeroGeometric } from './components/ui/shape-landing-hero';
+import { CardSpotlight } from './components/ui/card-spotlight';
 
 const containerStyle: React.CSSProperties = {
     display: "grid",
@@ -34,6 +36,20 @@ export default function Portfolio() {
     const [loading, setLoading] = useState(true);
     const [bootText, setBootText] = useState<string[]>([]);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+        if (typeof window !== 'undefined') {
+            return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
+        }
+        return 'dark';
+    });
+
+    useEffect(() => {
+        const root = window.document.documentElement;
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
 
     // Refs for cursor
     const cursorRef = useRef<HTMLDivElement>(null);
@@ -229,28 +245,50 @@ export default function Portfolio() {
                     <a href="#extra-curricular" onClick={() => setMenuOpen(false)}>Activities</a>
                     <a href="#connect" onClick={() => setMenuOpen(false)}>Connect</a>
                 </nav>
-                <button
-                    className={`hamburger ${menuOpen ? 'toggle' : ''}`}
-                    id="hamburger"
-                    aria-label="Open navigation menu"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                >
-                    <div className="line1"></div>
-                    <div className="line2"></div>
-                    <div className="line3"></div>
-                </button>
+
+                <div className="header-actions">
+                    <button
+                        className="theme-toggle-btn"
+                        onClick={toggleTheme}
+                        aria-label="Toggle light/dark theme"
+                    >
+                        {theme === 'dark' ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+                                <circle cx="12" cy="12" r="5" />
+                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                            </svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        )}
+                    </button>
+
+                    <button
+                        className={`hamburger ${menuOpen ? 'toggle' : ''}`}
+                        id="hamburger"
+                        aria-label="Open navigation menu"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                        <div className="line1"></div>
+                        <div className="line2"></div>
+                        <div className="line3"></div>
+                    </button>
+                </div>
             </header>
 
             <main>
-                <section id="home">
-                    <div className="w-full h-screen flex flex-col items-center justify-center text-center px-4">
-                        <div className="mb-6 w-full max-w-4xl">
-                            <RandomColorHoverText text="RAMUNARLAPATI" />
+                <section id="home" className="relative">
+                    <HeroGeometric badge="Portfolio 2026">
+                        <div className="w-full h-full flex flex-col items-center justify-center text-center px-4">
+                            <div className="mb-6 w-full max-w-4xl">
+                                <SpotlightText text="RAMUNARLAPATI" />
+                            </div>
+                            <h2 className="text-xl md:text-3xl text-[var(--text-secondary)] font-medium tracking-widest uppercase">
+                                Electrical and Electronics Engineer
+                            </h2>
                         </div>
-                        <h2 className="text-xl md:text-3xl text-[var(--text-secondary)] font-medium tracking-widest uppercase">
-                            Electrical and Electronics Engineer
-                        </h2>
-                    </div>
+                    </HeroGeometric>
                     <div className="scroll-indicator">
                         <span>Scroll</span>
                     </div>
@@ -451,7 +489,7 @@ export default function Portfolio() {
                     </svg>
                     <h2 className="section-title">Technical Arsenal</h2>
                     <div className="arsenal-grid">
-                        <div className="arsenal-card glass-card">
+                        <CardSpotlight className="arsenal-card glass-card">
                             <h3>Core Skills</h3>
                             <ul>
                                 <li>Generative AI</li>
@@ -460,8 +498,8 @@ export default function Portfolio() {
                                 <li>Embedded Systems</li>
                                 <li>Problem Solving</li>
                             </ul>
-                        </div>
-                        <div className="arsenal-card glass-card">
+                        </CardSpotlight>
+                        <CardSpotlight className="arsenal-card glass-card" color="rgba(0, 255, 136, 0.15)">
                             <h3>Technology Stack</h3>
                             <ul>
                                 <li>HTML, CSS, JavaScript</li>
@@ -471,14 +509,14 @@ export default function Portfolio() {
                                 <li>Firebase, Firestore</li>
                                 <li>Arduino Development</li>
                             </ul>
-                        </div>
-                        <div className="arsenal-card glass-card">
+                        </CardSpotlight>
+                        <CardSpotlight className="arsenal-card glass-card" color="rgba(255, 107, 53, 0.15)">
                             <h3>Certifications</h3>
                             <ul>
                                 <li>IOT</li>
                                 <li>Generative AI for All</li>
                             </ul>
-                        </div>
+                        </CardSpotlight>
                     </div>
                 </section>
 
@@ -612,6 +650,13 @@ export default function Portfolio() {
                     <div className="container">
                         <h2 className="section-title">Connect With Me</h2>
                         <div className="connect-content">
+                            <div className="w-full flex justify-center mb-8">
+                                <img
+                                    src="https://blush.design/api/download?shareUri=HmkSfyYk-dvRMu5E&c=Clothing_0%7Effc81a-0.2%7Eff4b33-0.3.0.0.2.0%7Eff8333&w=800&h=800&fm=png"
+                                    alt="Connect illustration"
+                                    className="w-full max-w-[400px] h-auto object-contain hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
                             <div className="connect-info">
                                 <h3>Let's Build Something Amazing Together</h3>
                                 <p>I'm currently available for freelance work and open to discussing new projects. Whether you
