@@ -294,7 +294,7 @@ export default function Portfolio() {
                     </div>
                 </section>
 
-                <section id="about" className="container fade-in-section" style={{ position: 'relative' }}>
+                <section id="about" className="fade-in-section"><div className="container" style={{ position: 'relative' }}>
                     <svg className="circuit-decoration top-right" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="8" fill="var(--accent-blue)" opacity="0.5" />
                         <line x1="50" y1="50" x2="90" y2="50" stroke="var(--accent-blue)" strokeWidth="2" />
@@ -333,9 +333,9 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </div></section>
 
-                <section id="projects" className="container fade-in-section" style={{ position: 'relative' }}>
+                <section id="projects" className="fade-in-section"><div className="container" style={{ position: 'relative' }}>
                     <svg className="circuit-decoration top-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="20" cy="20" r="6" fill="var(--accent-blue)" opacity="0.5" />
                         <line x1="20" y1="20" x2="80" y2="20" stroke="var(--accent-green)" strokeWidth="2" />
@@ -448,9 +448,9 @@ export default function Portfolio() {
                             />
                         </div>
                     </div>
-                </section>
+                </div></section>
 
-                <section id="timeline" className="container fade-in-section">
+                <section id="timeline" className="fade-in-section"><div className="container">
                     <h2 className="section-title">My Journey</h2>
                     <div className="timeline">
                         <div className="timeline-item left">
@@ -476,9 +476,9 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </div></section>
 
-                <section id="arsenal" className="container fade-in-section" style={{ position: 'relative' }}>
+                <section id="arsenal" className="fade-in-section"><div className="container" style={{ position: 'relative' }}>
                     <svg className="circuit-decoration bottom-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="30" cy="70" r="7" fill="var(--accent-blue)" opacity="0.5" />
                         <line x1="30" y1="70" x2="70" y2="30" stroke="var(--accent-blue)" strokeWidth="2" />
@@ -518,9 +518,9 @@ export default function Portfolio() {
                             </ul>
                         </CardSpotlight>
                     </div>
-                </section>
+                </div></section>
 
-                <section id="extra-curricular" className="container fade-in-section">
+                <section id="extra-curricular" className="fade-in-section"><div className="container">
                     <h2 className="section-title">Extra Curricular</h2>
                     <div className="project-grid">
 
@@ -543,9 +543,9 @@ export default function Portfolio() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </div></section>
 
-                <section className="container fade-in-section mt-16 mb-16">
+                <section className="fade-in-section"><div className="container">
                     <InteractiveBentoGallery
                         mediaItems={[
                             {
@@ -640,11 +640,11 @@ export default function Portfolio() {
                         title="Gallery Shots Collection"
                         description="Drag and explore our curated collection of shots"
                     />
-                </section>
+                </div></section>
 
-                <section id="certifications" className="container fade-in-section mb-16">
+                <section id="certifications" className="fade-in-section"><div className="container">
                     <Certifications />
-                </section>
+                </div></section>
 
                 <section id="connect" className="fade-in-section">
                     <div className="container">
