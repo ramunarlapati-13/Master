@@ -9,9 +9,9 @@ import { CardSpotlight } from './components/ui/card-spotlight';
 
 const containerStyle: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 350px), 1fr))",
     gap: 24,
-    padding: 24,
+    padding: "24px 12px",
     width: "100%",
     maxWidth: "1250px",
     margin: "0 auto",
@@ -38,7 +38,9 @@ export default function Portfolio() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
         if (typeof window !== 'undefined') {
-            return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
+            const saved = localStorage.getItem('theme') as 'light' | 'dark';
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         }
         return 'dark';
     });
@@ -352,6 +354,31 @@ export default function Portfolio() {
                             className="file-container group"
                             style={{
                                 ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-green)",
+                            }}
+                            onClick={() => window.open('https://alietake.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="/images/alietake.png"
+                                title="ALIETAKE"
+                                description="Solved a major problem of attendance handling (Campex) faced by my college. Built an advanced attendance website."
+                                borderColor="var(--accent-green)"
+                                borderBgColor="rgba(0, 255, 136, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-green)"
+                                effectBgColor="var(--glow-green)"
+                                patternColor1="var(--accent-green)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
+                        </div>
+
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
                                 ["--hover-text-color" as any]: "var(--accent-blue)",
                             }}
                             onClick={() => window.open('https://aioqr.vercel.app/', '_blank')}
@@ -548,6 +575,30 @@ export default function Portfolio() {
                 <section className="fade-in-section"><div className="container">
                     <InteractiveBentoGallery
                         mediaItems={[
+                            {
+                                id: 100,
+                                type: "image",
+                                title: "ALIETAKE: Secure Login 🔐",
+                                desc: "A streamlined, role-based login portal for Students and Staff, ensuring secure access to college management resources and personalized dashboards.",
+                                url: "/images/alietake-login.png",
+                                span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
+                            },
+                            {
+                                id: 101,
+                                type: "image",
+                                title: "Unified Student Dashboard 📊",
+                                desc: "A comprehensive overview of attendance (83%), academic performance (91%), and pending fees, providing students with real-time data at their fingertips.",
+                                url: "/images/alietake-dashboard.png",
+                                span: "md:col-span-2 md:row-span-2 col-span-1 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
+                                id: 102,
+                                type: "image",
+                                title: "Detailed Performance Tracking 📉",
+                                desc: "Granular tracking of internal marks and assessment scores across all subjects, accurately reflecting semester-long progress and achievements.",
+                                url: "/images/alietake-marks.png",
+                                span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
+                            },
                             {
                                 id: 12,
                                 type: "image",

@@ -171,7 +171,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                         <motion.div
                             key={selectedItem.id}
                             className="relative w-full max-w-[95%] sm:max-w-[85%] md:max-w-5xl 
-                                     bg-[#111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
+                                     bg-[var(--modal-bg)] border border-[var(--glass-border)] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
                             initial={{ y: 20, scale: 0.97 }}
                             animate={{
                                 y: 0,
@@ -191,7 +191,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Image Section */}
-                            <div className="w-full md:w-3/5 h-[250px] sm:h-[350px] md:h-[500px] bg-[#050505] relative overflow-hidden group flex items-center justify-center">
+                            <div className="w-full md:w-3/5 h-[250px] sm:h-[350px] md:h-[500px] bg-[var(--primary-dark)] relative overflow-hidden group flex items-center justify-center">
                                 {/* Glow Effect */}
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_rgba(56,189,248,0.15)_0%,_transparent_60%)] blur-3xl pointer-events-none" />
 
@@ -202,17 +202,17 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                             </div>
 
                             {/* Text Section */}
-                            <div className="w-full md:w-2/5 p-6 md:p-10 flex flex-col justify-center bg-[#111]">
+                            <div className="w-full md:w-2/5 p-6 md:p-10 flex flex-col justify-center bg-[var(--modal-bg)]">
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 }}
                                 >
-                                    <h3 className="text-white text-xl md:text-3xl font-bold mb-3 md:mb-4 leading-tight">
+                                    <h3 className="text-[var(--text-primary)] text-xl md:text-3xl font-bold mb-3 md:mb-4 leading-tight">
                                         {selectedItem.title}
                                     </h3>
                                     <div className="w-12 h-1 bg-blue-500 rounded-full mb-4 md:mb-6" />
-                                    <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed tracking-wide">
+                                    <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base leading-relaxed tracking-wide">
                                         {selectedItem.desc}
                                     </p>
 
@@ -258,8 +258,8 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 </div>
                 {/* Re-implementing dock content correctly below to match original logic but wrapped in Portal */}
                 <motion.div
-                    className="relative rounded-2xl bg-black/40 backdrop-blur-xl 
-                             border border-white/10 shadow-2xl
+                    className="relative rounded-2xl bg-[var(--card-bg)] backdrop-blur-xl 
+                             border border-[var(--glass-border)] shadow-2xl
                              cursor-grab active:cursor-grabbing p-2"
                 >
                     <div className="flex items-center gap-2">
@@ -401,7 +401,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                     onClick={() => setSelectedItem(item)}
                                 />
                                 <motion.div
-                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                                     <h3 className="relative text-white text-xs sm:text-sm md:text-base font-medium line-clamp-1">

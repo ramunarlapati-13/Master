@@ -4,24 +4,22 @@
 
 :root {
     --primary-dark: #0A0E27;
-    /* Deep navy */
     --secondary-dark: #1A1F3A;
-    /* Charcoal navy */
     --accent-blue: #00D9FF;
-    /* Electric cyan */
     --accent-green: #00FF88;
-    /* Neon green */
     --accent-orange: #FF6B35;
-    /* Energy orange */
     --text-primary: #FFFFFF;
     --text-secondary: #B4BCD0;
     --text-muted: #6B7794;
 
+    --card-bg: rgba(26, 31, 58, 0.6);
+    --card-bg-solid: #1A1F3A;
     --glass-bg: rgba(26, 31, 58, 0.6);
-    --glass-border: rgba(0, 217, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.08);
     --shadow-color: rgba(0, 0, 0, 0.4);
     --glow-blue: rgba(0, 217, 255, 0.3);
     --glow-green: rgba(0, 255, 136, 0.2);
+    --modal-bg: #111111;
 }
 
 [data-theme='light'] {
@@ -34,11 +32,36 @@
     --text-secondary: #4B5563;
     --text-muted: #9CA3AF;
 
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-bg-solid: #FFFFFF;
     --glass-bg: rgba(255, 255, 255, 0.8);
     --glass-border: rgba(10, 132, 255, 0.15);
     --shadow-color: rgba(0, 0, 0, 0.08);
     --glow-blue: rgba(10, 132, 255, 0.2);
     --glow-green: rgba(48, 209, 88, 0.2);
+    --modal-bg: #FFFFFF;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme='dark']) {
+        --primary-dark: #F8FAFC;
+        --secondary-dark: #FFFFFF;
+        --accent-blue: #0A84FF;
+        --accent-green: #30D158;
+        --accent-orange: #FF9F0A;
+        --text-primary: #1F2937;
+        --text-secondary: #4B5563;
+        --text-muted: #9CA3AF;
+
+        --card-bg: rgba(255, 255, 255, 0.8);
+        --card-bg-solid: #FFFFFF;
+        --glass-bg: rgba(255, 255, 255, 0.8);
+        --glass-border: rgba(10, 132, 255, 0.15);
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --glow-blue: rgba(10, 132, 255, 0.2);
+        --glow-green: rgba(48, 209, 88, 0.2);
+        --modal-bg: #FFFFFF;
+    }
 }
 
 @media (max-width: 768px) {
@@ -68,7 +91,6 @@ body {
     overflow-x: hidden;
     position: relative;
     cursor: none;
-    /* Custom cursor */
     transition: background 0.5s ease, color 0.5s ease;
 }
 
@@ -176,7 +198,7 @@ body::before {
 
 /* Header & Navigation */
 header {
-    background-color: rgba(26, 31, 58, 0.3);
+    background-color: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 1rem 2rem;
@@ -190,15 +212,15 @@ header {
     width: 90%;
     max-width: 1000px;
     z-index: 100;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     border-radius: 50px;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px -10px var(--shadow-color);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 header.scrolled {
     padding: 0.6rem 2rem;
-    background-color: rgba(26, 31, 58, 0.6);
+    background-color: var(--glass-bg);
     top: 10px;
     width: 95%;
     max-width: 1100px;
@@ -463,14 +485,14 @@ footer {
 
 /* Glass Card Base Style with circuit accent */
 .glass-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px var(--shadow-color);
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-border);
+    border-left: 1px solid var(--glass-border);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
@@ -554,8 +576,8 @@ footer {
     /* Extends .glass-card */
     overflow: hidden;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.03);
-    background-image: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.1) 25%, transparent 30%);
+    background-color: var(--glass-bg);
+    background-image: linear-gradient(105deg, transparent 20%, var(--glass-border) 25%, transparent 30%);
     background-size: 200% 100%;
     background-position: -100% 0;
     background-repeat: no-repeat;
@@ -1278,7 +1300,7 @@ footer::before {
         height: 100vh;
         width: 70%;
         max-width: 300px;
-        background: rgba(15, 23, 42, 0.8);
+        background: var(--glass-bg);
         /* Darker, more opaque glass for menu */
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);

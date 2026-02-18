@@ -119,7 +119,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
                     <p
                         style={{
                             fontSize: "0.9rem",
-                            color: "rgba(255, 255, 255, 0.7)",
+                            color: "var(--text-secondary)",
                             lineHeight: 1.6,
                             display: "-webkit-box",
                             WebkitLineClamp: 3,

@@ -64,7 +64,7 @@ const certifications = [
 export const Certifications = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">
+            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--text-primary)]">
                 Certifications & Recognition
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -87,7 +87,7 @@ const HoverCard = ({ cert, index }: { cert: any; index: number }) => {
             {/* Animated border gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent group-hover:via-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-border-flow" />
 
-            <div className="relative h-full bg-black/40 backdrop-blur-sm border border-white/10 p-6 rounded-2xl overflow-hidden hover:bg-white/5 transition-colors duration-300">
+            <div className="relative h-full bg-[var(--card-bg)] backdrop-blur-sm border border-[var(--glass-border)] p-6 rounded-2xl overflow-hidden hover:bg-[var(--glass-border)] transition-colors duration-300">
 
                 {/* Glow effect blob */}
                 <div className="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all duration-500" />
@@ -102,11 +102,11 @@ const HoverCard = ({ cert, index }: { cert: any; index: number }) => {
                         </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-blue-400 transition-colors">
                         {cert.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm mb-4 flex-grow">
+                    <p className="text-[var(--text-secondary)] text-sm mb-4 flex-grow">
                         Issued by {cert.issuer}
                     </p>
 
