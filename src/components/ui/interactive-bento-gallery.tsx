@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 
 
 // MediaItemType defines the structure of a media item
@@ -12,7 +13,9 @@ export interface MediaItemType {
     desc: string;
     url: string;
     span: string;
+    images?: string[]; // Support for multiple images in a single project
 }
+
 // MediaItem component renders either a video or image based on item.type
 const MediaItem = ({ item, className, onClick }: { item: MediaItemType, className?: string, onClick?: () => void }) => {
     const videoRef = useRef<HTMLVideoElement>(null); // Reference for video element
@@ -130,24 +133,30 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
     );
 };
 
-
-
-import { createPortal } from 'react-dom';
-
-// ... (existing imports)
-
 // GalleryModal component displays the selected media item in a modal
 interface GalleryModalProps {
     selectedItem: MediaItemType;
     isOpen: boolean;
     onClose: () => void;
     setSelectedItem: (item: MediaItemType | null) => void;
-    mediaItems: MediaItemType[]; // List of media items to display in the modal
+    mediaItems: MediaItemType[]; // List of gallery items (for the bottom dock)
 }
-const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
-    const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });  // Track the position of the dockable panel
 
-    if (!isOpen) return null; // Return null if the modal is not open
+const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }: GalleryModalProps) => {
+    const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+    // Reset active image index when the selected item changes
+    useEffect(() => {
+        setActiveImageIndex(0);
+    }, [selectedItem]);
+
+    if (!isOpen) return null;
+
+    // Get all images for the current project (cover + additional)
+    const projectImages = selectedItem.images && selectedItem.images.length > 0
+        ? selectedItem.images
+        : [selectedItem.url];
 
     return createPortal(
         <>
@@ -161,16 +170,15 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                     stiffness: 400,
                     damping: 30
                 }}
-                className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-screen backdrop-blur-lg 
-                          rounded-none overflow-hidden z-[100]"
+                className="fixed inset-0 w-full min-h-screen backdrop-blur-lg rounded-none overflow-hidden z-[100]"
                 style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
             >
                 {/* Main Content */}
                 <div className="h-full flex flex-col items-center justify-center p-4">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={selectedItem.id}
-                            className="relative w-full max-w-[95%] sm:max-w-[85%] md:max-w-5xl 
+                            key={`${selectedItem.id}-${activeImageIndex}`}
+                            className="relative w-full max-w-[95%] sm:max-w-[85%] md:max-w-6xl 
                                      bg-[var(--modal-bg)] border border-[var(--glass-border)] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
                             initial={{ y: 20, scale: 0.97 }}
                             animate={{
@@ -191,11 +199,29 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Image Section */}
-                            <div className="w-full md:w-3/5 h-[250px] sm:h-[350px] md:h-[500px] bg-[var(--primary-dark)] relative overflow-hidden group flex items-center justify-center">
+                            <div className="w-full md:w-3/5 h-[300px] sm:h-[400px] md:h-[600px] bg-[var(--primary-dark)] relative overflow-hidden group flex flex-col items-center justify-center">
                                 {/* Glow Effect */}
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_rgba(56,189,248,0.15)_0%,_transparent_60%)] blur-3xl pointer-events-none" />
 
-                                <MediaItem item={selectedItem} className="w-full h-full object-contain relative z-10 transition-transform duration-700 group-hover:scale-105" onClick={() => { }} />
+                                <MediaItem
+                                    item={{ ...selectedItem, url: projectImages[activeImageIndex] }}
+                                    className="w-full h-full object-contain relative z-10 transition-transform duration-700 hover:scale-105"
+                                    onClick={() => { }}
+                                />
+
+                                {/* Project Gallery Navigation (if multiple images exist) */}
+                                {projectImages.length > 1 && (
+                                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10">
+                                        {projectImages.map((_, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setActiveImageIndex(idx)}
+                                                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeImageIndex === idx ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/60'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
 
                                 {/* Overlay gradient for depth */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none z-20" />
@@ -216,8 +242,24 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                         {selectedItem.desc}
                                     </p>
 
-                                    {/* Optional decorations to match the 'tech' feel of reference */}
-
+                                    {/* Thumbnail Selection for Project Gallery */}
+                                    {projectImages.length > 1 && (
+                                        <div className="mt-8">
+                                            <p className="text-[var(--text-secondary)] text-[10px] uppercase tracking-widest font-bold mb-3">Project Gallery</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {projectImages.map((img, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        onClick={() => setActiveImageIndex(idx)}
+                                                        className={`w-16 h-16 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-300 ${activeImageIndex === idx ? 'border-blue-500 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
+                                                            }`}
+                                                    >
+                                                        <img src={img} className="w-full h-full object-cover" alt={`Project view ${idx + 1}`} />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </motion.div>
                             </div>
                         </motion.div>
@@ -227,18 +269,17 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 {/* Close Button */}
                 <motion.button
                     className="absolute top-4 right-4 z-[110]
-                              p-3 rounded-full bg-white/10 text-white hover:bg-white/20 
-                              backdrop-blur-md border border-white/20"
+                               p-3 rounded-full bg-white/10 text-white hover:bg-white/20 
+                               backdrop-blur-md border border-white/20"
                     onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                 >
                     <X className='w-6 h-6' />
                 </motion.button>
-
             </motion.div>
 
-            {/* Draggable Dock */}
+            {/* Draggable Dock for other projects */}
             <motion.div
                 drag
                 dragMomentum={false}
@@ -253,10 +294,6 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                 }}
                 className="fixed z-[101] left-1/2 bottom-8 -translate-x-1/2 touch-none"
             >
-                <div /* Changed parent wrapper to simple div since motion.div drag logic is on container */ >
-                    {/* Actually keeping original structure but ensuring z-index is high */}
-                </div>
-                {/* Re-implementing dock content correctly below to match original logic but wrapped in Portal */}
                 <motion.div
                     className="relative rounded-2xl bg-[var(--card-bg)] backdrop-blur-xl 
                              border border-[var(--glass-border)] shadow-2xl
