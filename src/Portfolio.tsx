@@ -622,18 +622,6 @@ export default function Portfolio() {
                                 span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
                             },
                             {
-                                id: 4,
-                                type: "image",
-                                title: "Industrial IoT: Concept to Cloud ☁️",
-                                desc: "Hardware integration with Arduino and ESP8266. Built custom ThingSpeak dashboards for instant data monitoring and mastered end-to-end IoT workflows.",
-                                url: "https://media.licdn.com/dms/image/v2/D5622AQEhX3C7HEMffA/feedshare-shrink_800/B56ZuZMPA8KgAg-/0/1767801680856?e=2147483647&v=beta&t=bNt68FbuqoUMoTjTzIaikVR_cZuZT8guBumA6kRz-W4",
-                                images: [
-                                    "https://media.licdn.com/dms/image/v2/D5622AQEhX3C7HEMffA/feedshare-shrink_800/B56ZuZMPA8KgAg-/0/1767801680856?e=2147483647&v=beta&t=bNt68FbuqoUMoTjTzIaikVR_cZuZT8guBumA6kRz-W4",
-                                    "https://media.licdn.com/dms/image/v2/D5622AQGipt1z3Hgp4g/feedshare-shrink_800/B56Zue85SSIMAg-/0/1767898323582?e=2147483647&v=beta&t=nMc72UkZsCOs7STny9em7VBGiw41tlpVl9uUfE8u0lo"
-                                ],
-                                span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-1",
-                            },
-                            {
                                 id: 6,
                                 type: "image",
                                 title: "IoT Workshop Series",
