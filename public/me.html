@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel — Download Requests</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #080c1e;
+            --bg2: #111633;
+            --card: rgba(26, 31, 58, 0.85);
+            --blue: #00D9FF;
+            --green: #00FF88;
+            --orange: #FF6B35;
+            --red: #ff4e6a;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #ffffff;
+            --muted: #8892af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── OVERLAYS ── */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(8, 12, 30, 0.97);
+            backdrop-filter: blur(24px);
+        }
+
+        /* Auth card */
+        .auth-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--blue);
+            border-radius: 28px;
+            padding: 2.5rem 2.5rem 2rem;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 217, 255, 0.07);
+            animation: cardIn .4s cubic-bezier(.32, 1.1, .7, 1);
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.97)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .auth-brand {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, .15), rgba(0, 255, 136, .1));
+            border: 1.5px solid rgba(0, 217, 255, .3);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: .4rem;
+        }
+
+        .auth-card p {
+            color: var(--muted);
+            font-size: .875rem;
+            margin-bottom: 1.75rem;
+            line-height: 1.6;
+        }
+
+        /* Google sign-in button */
+        .google-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            padding: .9rem 1.5rem;
+            background: #fff;
+            color: #1f1f1f;
+            border: none;
+            border-radius: 14px;
+            font-size: .95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .3);
+        }
+
+        .google-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+        }
+
+        .google-btn:active {
+            transform: translateY(0);
+        }
+
+        .google-btn svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.25rem 0;
+            color: var(--muted);
+            font-size: .75rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* UID info box shown after first sign-in */
+        .uid-box {
+            background: rgba(0, 217, 255, .06);
+            border: 1px solid rgba(0, 217, 255, .2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .uid-box p {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-bottom: .4rem;
+        }
+
+        .uid-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .8rem;
+            color: var(--blue);
+            word-break: break-all;
+            user-select: all;
+            cursor: pointer;
+        }
+
+        .uid-note {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: .5rem;
+        }
+
+        .uid-note strong {
+            color: var(--orange);
+        }
+
+        /* Access denied card */
+        .denied-card {
+            background: rgba(255, 78, 106, .07);
+            border: 1px solid rgba(255, 78, 106, .3);
+        }
+
+        .denied-card h2 {
+            color: var(--red);
+        }
+
+        /* Loading state */
+        .auth-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border);
+            border-top-color: var(--blue);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── MAIN APP ── */
+        #app {
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 12, 30, .92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: .9rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: .35rem .9rem .35rem .5rem;
+        }
+
+        .user-pill img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid var(--blue);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .user-pill span {
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        .logout-btn {
+            padding: .4rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--muted);
+            font-size: .8rem;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .header-meta {
+            color: var(--muted);
+            font-size: .78rem;
+        }
+
+        .main {
+            padding: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: border-color .2s;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(0, 217, 255, .3);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.blue {
+            background: rgba(0, 217, 255, .12);
+        }
+
+        .stat-icon.green {
+            background: rgba(0, 255, 136, .12);
+        }
+
+        .stat-icon.orange {
+            background: rgba(255, 107, 53, .12);
+        }
+
+        .stat-val {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-val.blue {
+            color: var(--blue);
+        }
+
+        .stat-val.green {
+            color: var(--green);
+        }
+
+        .stat-val.orange {
+            color: var(--orange);
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: .78rem;
+            margin-top: 2px;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .search-wrap {
+            flex: 1;
+            min-width: 220px;
+            position: relative;
+        }
+
+        .search-wrap input {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: .65rem 1rem .65rem 2.5rem;
+            color: var(--text);
+            font-size: .9rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .search-wrap input:focus {
+            border-color: var(--blue);
+        }
+
+        .search-wrap::before {
+            content: '🔍';
+            position: absolute;
+            left: .75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9rem;
+        }
+
+        .filter-select {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: .65rem 1rem;
+            color: var(--text);
+            font-size: .85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .export-btn {
+            padding: .65rem 1.25rem;
+            border: 1px solid var(--green);
+            border-radius: 12px;
+            background: rgba(0, 255, 136, .1);
+            color: var(--green);
+            font-size: .85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .export-btn:hover {
+            background: rgba(0, 255, 136, .2);
+            transform: translateY(-1px);
+        }
+
+        /* Table */
+        .table-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(0, 217, 255, .06);
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            padding: .9rem 1.25rem;
+            text-align: left;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            font-size: .87rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr {
+            transition: background .15s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, .02);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: .25rem .75rem;
+            border-radius: 999px;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .badge.yes {
+            background: rgba(0, 255, 136, .15);
+            color: var(--green);
+            border: 1px solid rgba(0, 255, 136, .3);
+        }
+
+        .badge.no {
+            background: rgba(255, 78, 106, .15);
+            color: var(--red);
+            border: 1px solid rgba(255, 78, 106, .3);
+        }
+
+        .badge.maybe {
+            background: rgba(0, 217, 255, .15);
+            color: var(--blue);
+            border: 1px solid rgba(0, 217, 255, .3);
+        }
+
+        .ts {
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .78rem;
+        }
+
+        .email-link {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        .row-num {
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .75rem;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--muted);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty h3 {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: .5rem;
+        }
+
+        .spinner-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            gap: 1rem;
+            color: var(--muted);
+        }
+
+        @media(max-width:768px) {
+            .main {
+                padding: 1rem;
+            }
+
+            th:nth-child(5),
+            td:nth-child(5),
+            th:nth-child(6),
+            td:nth-child(6) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── AUTH OVERLAY ── -->
+    <div class="overlay" id="auth-overlay">
+        <div class="auth-card" id="auth-card">
+            <div class="auth-brand">⚡</div>
+            <h2>Admin Sign In</h2>
+            <p>Sign in with your Google account to access<br />the download requests dashboard.</p>
+
+
+
+            <button class="google-btn" id="sign-in-btn" onclick="signInWithGoogle()">
+                <svg viewBox="0 0 48 48">
+                    <path fill="#EA4335"
+                        d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                    <path fill="#4285F4"
+                        d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                    <path fill="#FBBC05"
+                        d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                    <path fill="#34A853"
+                        d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                    <path fill="none" d="M0 0h48v48H0z" />
+                </svg>
+                Continue with Google
+            </button>
+
+            <div class="auth-divider">secured by Firebase Authentication</div>
+            <p style="font-size:.72rem;color:var(--muted)">Only authorised accounts can view submissions.</p>
+        </div>
+
+        <!-- Loading state -->
+        <div id="auth-loading" style="display:none" class="auth-loading">
+            <div class="spinner"></div>
+            <span style="color:var(--muted);font-size:.9rem">Authenticating...</span>
+        </div>
+
+        <!-- Access Denied state -->
+        <div id="access-denied" style="display:none" class="auth-card denied-card">
+            <div style="font-size:3rem;margin-bottom:1rem">🚫</div>
+            <h2>Access Denied</h2>
+            <p>Your Google account is not authorised to view this panel.<br /><br />Only the site owner's account has
+                permission to access this data.</p>
+            <button class="google-btn" onclick="signOut()" style="margin-top:1rem">
+                Sign in with a different account
+            </button>
+        </div>
+    </div>
+
+    <!-- ── MAIN APP ── -->
+    <div id="app">
+        <header>
+            <div class="logo">⚡ Admin Panel</div>
+            <div class="header-meta" id="last-refresh">Loading...</div>
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <div class="user-pill">
+                    <img id="user-avatar" src="" alt="avatar" />
+                    <span id="user-name"></span>
+                </div>
+                <button class="logout-btn" onclick="signOut()">Sign Out</button>
+            </div>
+        </header>
+
+        <div class="main">
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon blue">📥</div>
+                    <div>
+                        <div class="stat-val blue" id="stat-total">—</div>
+                        <div class="stat-label">Total Requests</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">✅</div>
+                    <div>
+                        <div class="stat-val green" id="stat-yes">—</div>
+                        <div class="stat-label">Workshop Interested</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">📅</div>
+                    <div>
+                        <div class="stat-val orange" id="stat-today">—</div>
+                        <div class="stat-label">Today's Downloads</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-wrap">
+                    <input type="text" id="search-input" placeholder="Search by name, email, designation..."
+                        oninput="renderTable()" />
+                </div>
+                <select class="filter-select" id="workshop-filter" onchange="renderTable()">
+                    <option value="">All Responses</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="Maybe">Maybe</option>
+                </select>
+                <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+            </div>
+
+            <div class="table-wrap">
+                <div class="spinner-wrap" id="loader">
+                    <div class="spinner"></div><span>Fetching submissions...</span>
+                </div>
+                <div id="table-container" style="display:none">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Designation</th>
+                                <th>Address</th>
+                                <th>Workshop</th>
+                                <th>Submitted At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                    <div class="empty" id="empty-state" style="display:none">
+                        <div class="empty-icon">📭</div>
+                        <h3>No submissions found</h3>
+                        <p>No download requests match your current filters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+        import {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider,
+            onAuthStateChanged,
+            signOut as fbSignOut
+        } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9h-2Fyt6W8oqrOm4OlnFg5ig9XpCgKQo",
+            authDomain: "app-data-1d033.firebaseapp.com",
+            projectId: "app-data-1d033",
+            storageBucket: "app-data-1d033.firebasestorage.app",
+            messagingSenderId: "668866652969",
+            appId: "1:668866652969:web:5383ec3fc2e83e0020a538",
+            measurementId: "G-BP6KC0Q0KS",
+            databaseURL: "https://app-data-1d033-default-rtdb.firebaseio.com"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const provider = new GoogleAuthProvider();
+
+        // ── Allowed email — only this Google account can access ──
+        const ALLOWED_EMAIL = 'ramunarlapati@gmail.com';
+
+        let allData = [];
+
+        // ── Auth state listener ──
+        onAuthStateChanged(auth, user => {
+            const overlay = document.getElementById('auth-overlay');
+            const authCard = document.getElementById('auth-card');
+            const loading = document.getElementById('auth-loading');
+            const denied = document.getElementById('access-denied');
+
+            loading.style.display = 'none';
+
+            if (!user) {
+                overlay.style.display = 'flex';
+                authCard.style.display = 'block';
+                denied.style.display = 'none';
+                document.getElementById('app').style.display = 'none';
+                return;
+            }
+
+            const email = user.email;
+
+            if (email !== ALLOWED_EMAIL) {
+                overlay.style.display = 'flex';
+                authCard.style.display = 'none';
+                denied.style.display = 'block';
+                document.getElementById('app').style.display = 'none';
+                return;
+            }
+
+            // ✅ Authorised
+            overlay.style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            document.getElementById('user-avatar').src = user.photoURL || '';
+            document.getElementById('user-name').textContent = user.displayName || user.email;
+
+            // Load data
+            const dbRef = ref(db, 'download_requests');
+            onValue(dbRef, snapshot => {
+                allData = [];
+                if (snapshot.exists()) {
+                    snapshot.forEach(child => allData.push({ id: child.key, ...child.val() }));
+                    allData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                }
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('table-container').style.display = 'block';
+                updateStats(); renderTableFn();
+                document.getElementById('last-refresh').textContent =
+                    `Live · ${new Date().toLocaleTimeString()}`;
+            });
+        });
+
+        window.signInWithGoogle = function () {
+            const card = document.getElementById('auth-card');
+            const load = document.getElementById('auth-loading');
+            card.style.display = 'none';
+            load.style.display = 'flex';
+            signInWithPopup(auth, provider).catch(() => {
+                card.style.display = 'block';
+                load.style.display = 'none';
+            });
+        };
+
+        window.signOut = function () { fbSignOut(auth); };
+
+        window.copyUID = function () {
+            const uid = document.getElementById('uid-display').textContent;
+            navigator.clipboard.writeText(uid).then(() => alert('UID copied! Paste it into ALLOWED_UIDS in me.html'));
+        };
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = allData.length;
+            document.getElementById('stat-yes').textContent = allData.filter(d => d.workshopInterest === 'Yes').length;
+            const today = new Date().toDateString();
+            document.getElementById('stat-today').textContent = allData.filter(d => d.timestamp && new Date(d.timestamp).toDateString() === today).length;
+        }
+
+        function renderTableFn() {
+            const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+            const ws = document.getElementById('workshop-filter')?.value || '';
+            const filtered = allData.filter(d => {
+                const matchQ = !q || [d.name, d.email, d.designation, d.address].some(v => (v || '').toLowerCase().includes(q));
+                const matchWs = !ws || d.workshopInterest === ws;
+                return matchQ && matchWs;
+            });
+            const tbody = document.getElementById('table-body');
+            const empty = document.getElementById('empty-state');
+            if (!filtered.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            tbody.innerHTML = filtered.map((d, i) => {
+                const ts = d.timestamp ? new Date(d.timestamp).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '—';
+                const wv = d.workshopInterest || '';
+                return `<tr>
+                <td class="row-num">${i + 1}</td>
+                <td><strong>${esc(d.name || '')}</strong></td>
+                <td><a class="email-link" href="mailto:${esc(d.email || '')}">${esc(d.email || '')}</a></td>
+                <td>${esc(d.designation || '')}</td>
+                <td style="max-width:200px;white-space:pre-wrap;word-break:break-word">${esc(d.address || '')}</td>
+                <td><span class="badge ${wv.toLowerCase()}">${esc(wv || '—')}</span></td>
+                <td class="ts">${ts}</td>
+            </tr>`;
+            }).join('');
+        }
+
+        window.renderTable = renderTableFn;
+
+        window.exportCSV = function () {
+            const headers = ['#', 'Name', 'Email', 'Designation', 'Address', 'Workshop Interest', 'Submitted At'];
+            const rows = allData.map((d, i) => [i + 1, d.name || '', d.email || '', d.designation || '', (d.address || '').replace(/\n/g, ' '), d.workshopInterest || '', d.timestamp ? new Date(d.timestamp).toLocaleString() : '']);
+            const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+            const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })), download: `requests_${new Date().toISOString().slice(0, 10)}.csv` });
+            a.click();
+        };
+
+        function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    </script>
+</body>
+
+</html>

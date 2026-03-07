@@ -36,6 +36,7 @@ export default function Portfolio() {
     const [loading, setLoading] = useState(true);
     const [bootText, setBootText] = useState<string[]>([]);
     const [menuOpen, setMenuOpen] = useState(false);
+
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('theme') as 'light' | 'dark';
@@ -109,7 +110,7 @@ export default function Portfolio() {
         const animateCursor = () => {
             posX += (mouseX - posX) * 0.15;
             posY += (mouseY - posY) * 0.15;
-            follower.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+            follower.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate(-50%, -50%)`;
             animationFrameId = requestAnimationFrame(animateCursor);
         };
 
@@ -134,7 +135,7 @@ export default function Portfolio() {
                 el.removeEventListener('mouseleave', handleMouseLeave);
             });
         };
-    }, [loading]); // Re-run after loading to attach listeners to new elements
+    }, [loading]); // Re-run after loading to attach listeners to elements
 
     // Scroll Effects
     useEffect(() => {
@@ -200,8 +201,14 @@ export default function Portfolio() {
         );
     }
 
+
+
     return (
         <>
+            <div className="cursor" ref={cursorRef}></div>
+            <div className="cursor-follower" ref={followerRef}></div>
+
+
             <div className="circuit-background">
                 <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
                     <path className="circuit-path" d="M0,100 L200,100 L250,150 L500,150 L550,100 L800,100" />
@@ -220,8 +227,7 @@ export default function Portfolio() {
                 </svg>
             </div>
 
-            <div className="cursor" ref={cursorRef}></div>
-            <div className="cursor-follower" ref={followerRef}></div>
+
 
             <div className="background-blobs">
                 <div className="blob blob1"></div>
@@ -349,6 +355,31 @@ export default function Portfolio() {
                     </svg>
                     <h2 className="section-title">Projects Showcase</h2>
                     <div style={containerStyle}>
+
+                        <div
+                            className="file-container group"
+                            style={{
+                                ...fileContainerStyle,
+                                ["--hover-text-color" as any]: "var(--accent-orange)",
+                            }}
+                            onClick={() => window.open('https://dual-axis-solar-monitor.vercel.app/', '_blank')}
+                        >
+                            <InfoCard
+                                image="/images/solar-tracker-hero.png"
+                                title="Dual-Axis Solar Tracker"
+                                description="A high-performance IoT solar tracker with ESP8266 and real-time Firebase monitoring. Features a premium web dashboard with global manual override controls."
+                                borderColor="var(--accent-orange)"
+                                borderBgColor="rgba(255, 107, 53, 0.05)"
+                                cardBgColor="var(--glass-bg)"
+                                shadowColor="var(--shadow-color)"
+                                textColor="var(--text-primary)"
+                                hoverTextColor="var(--accent-orange)"
+                                effectBgColor="var(--glow-orange)"
+                                patternColor1="var(--accent-orange)"
+                                patternColor2="transparent"
+                                contentPadding="20px"
+                            />
+                        </div>
 
                         <div
                             className="file-container group"
@@ -676,3 +707,4 @@ export default function Portfolio() {
         </>
     );
 }
+

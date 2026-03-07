@@ -90,7 +90,6 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     position: relative;
-    cursor: none;
     transition: background 0.5s ease, color 0.5s ease;
 }
 
@@ -1430,7 +1429,6 @@ body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
-    mix-blend-mode: screen;
 }
 
 .cursor-follower {
@@ -1443,7 +1441,6 @@ body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out, width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
-    mix-blend-mode: screen;
 }
 
 /* Hover state for cursor */
