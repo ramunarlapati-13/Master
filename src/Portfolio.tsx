@@ -201,14 +201,10 @@ export default function Portfolio() {
         );
     }
 
-
-
     return (
         <>
             <div className="cursor" ref={cursorRef}></div>
             <div className="cursor-follower" ref={followerRef}></div>
-
-
             <div className="circuit-background">
                 <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
                     <path className="circuit-path" d="M0,100 L200,100 L250,150 L500,150 L550,100 L800,100" />
@@ -226,9 +222,6 @@ export default function Portfolio() {
                     <circle className="node-point" cx="960" cy="540" r="5" style={{ fill: 'var(--accent-orange)' }} />
                 </svg>
             </div>
-
-
-
             <div className="background-blobs">
                 <div className="blob blob1"></div>
                 <div className="blob blob2"></div>
@@ -707,4 +700,3 @@ export default function Portfolio() {
         </>
     );
 }
-
