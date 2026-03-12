@@ -242,7 +242,7 @@ export default function Portfolio() {
                     <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
                     <a href="https://ramublogs.vercel.app/" onClick={() => setMenuOpen(false)}>Blogs</a>
                     <a href="#timeline" onClick={() => setMenuOpen(false)}>Timeline</a>
-                    <a href="#arsenal" onClick={() => setMenuOpen(false)}>Arsenal</a>
+                    <a href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</a>
                     <a href="#extra-curricular" onClick={() => setMenuOpen(false)}>Activities</a>
                     <a href="#connect" onClick={() => setMenuOpen(false)}>Connect</a>
                 </nav>
@@ -596,9 +596,33 @@ export default function Portfolio() {
                     </div>
                 </div></section>
 
-                <section className="fade-in-section"><div className="container">
+                <section id="gallery" className="fade-in-section"><div className="container">
                     <InteractiveBentoGallery
                         mediaItems={[
+                            {
+                                id: 107,
+                                type: "image",
+                                title: "🚀Bringing Intelligence to Solar Energy: My Dual-Axis Tracker Project! ☀️🔋",
+                                desc: "Static solar panels lose a significant amount of potential energy as the sun moves. To solve this, I built a Dual-Axis Solar Tracking & Monitoring System that follows the sun in real-time for maximum efficiency. 🌍✨",
+                                url: "/images/solar-tracker-1.jpg",
+                                images: [
+                                    "/images/solar-tracker-1.jpg",
+                                    "/images/solar-tracker-2.jpg",
+                                    "/images/solar-tracker-3.jpg",
+                                    "/images/solar-tracker-4.jpg"
+                                ],
+                                descriptions: [
+                                    "🚀Bringing Intelligence to Solar Energy: My Dual-Axis Tracker Project! ☀️🔋\nStatic solar panels lose a significant amount of potential energy as the sun moves. To solve this, I built a Dual-Axis Solar Tracking & Monitoring System that follows the sun in real-time for maximum efficiency. 🌍✨",
+                                    "Powered by the ESP8266, this IoT-enabled system doesn't just move—it communicates! 🛰️💻\nKey Tech Highlights: 📊 Real-Time Telemetry: Live data sync via Firebase Realtime Database. 🧠 Smart Tracking: Differential sensor logic for vertical and horizontal alignment.",
+                                    "🖥️ Global Dashboard: A sleek, dark-mode web interface built with Vanilla JS and Chart.js. 🕹️ Remote Control: Manual override sliders to control the panel from anywhere in the world.",
+                                    "💾 Persistence: Automated history logging to track voltage and motor response over time.\nCheck out the project in action! 🎬👇"
+                                ],
+                                actions: [
+                                    { label: "Live Dashboard", href: "https://dual-axis-solar-monitor.vercel.app/" },
+                                    { label: "Full Documentation & Code", href: "https://ramublogs.vercel.app/blogs/solar-tracker-esp8266" }
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
                             {
                                 id: 106,
                                 type: "image",

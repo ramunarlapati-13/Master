@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 import { createPortal } from 'react-dom';
 
 
@@ -15,6 +15,7 @@ export interface MediaItemType {
     span: string;
     images?: string[]; // Support for multiple images in a single project
     descriptions?: string[]; // Descriptions for each image in the project gallery
+    actions?: { label: string; href: string }[]; // Action buttons
 }
 
 // MediaItem component renders either a video or image based on item.type
@@ -242,6 +243,25 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs md:text-sm leading-normal tracking-wide whitespace-pre-line">
                                         {selectedItem.descriptions?.[activeImageIndex] || selectedItem.desc}
                                     </p>
+
+                                    {/* Action Buttons */}
+                                    {selectedItem.actions && selectedItem.actions.length > 0 && (
+                                        <div className="mt-4 md:mt-6 flex flex-wrap gap-3">
+                                            {selectedItem.actions.map((action, idx) => (
+                                                <a
+                                                    key={idx}
+                                                    href={action.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="group flex flex-1 items-center justify-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-xl text-xs sm:text-sm font-semibold transition-all hover:scale-105"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {action.label}
+                                                    <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 -translate-y-0.5 transition-all" />
+                                                </a>
+                                            ))}
+                                        </div>
+                                    )}
 
                                     {/* Thumbnail Selection for Project Gallery */}
                                     {projectImages.length > 1 && (
