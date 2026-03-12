@@ -610,14 +610,22 @@ export default function Portfolio() {
                                     "/images/mission-accomplished-2.jpg",
                                     "/images/mission-accomplished-3.jpg",
                                     "/images/mission-accomplished-4.jpg",
-                                    "/images/mission-accomplished-5.jpg"
+                                    "/images/mission-accomplished-5.jpg",
+                                    "/images/mission-accomplished-6.jpg",
+                                    "/images/mission-accomplished-7.jpg",
+                                    "/images/mission-accomplished-8.jpg",
+                                    "/images/mission-accomplished-9.jpg"
                                 ],
                                 descriptions: [
-                                    "☘️ Inspiring Future Innovators through Renewable Energy! 🌱⚡\nI am happy to share that I successfully completed a presentation today for students as part of the NSS Extension Programme on \"Renewable Integration.\"\nThe session focused on the diverse world of Renewable Energy Sources, covering everything from Tidal and Geothermal to Biomass, Wind, and Hydroelectric power.",
+                                    "☘️ Inspiring Future Innovators through Renewable Energy! 🌱⚡\nI am happy to share that I successfully completed a presentation today for students as part of the NSS Extension Programme on \"Renewable Integration.\"",
+                                    "The session focused on the diverse world of Renewable Energy Sources, covering everything from Tidal and Geothermal to Biomass, Wind, and Hydroelectric power.",
                                     "It was incredibly rewarding to see the students’ curiosity and their satisfaction with the explanation of these vital technologies.",
                                     "Key highlights of the day:\nHands-on Learning: Using my handmade poster to break down complex energy cycles. 🎨",
-                                    "Interactive Session: Engaging with the bright minds at St. Joseph's Industrial Training Institute about the future of sustainability. 🤝\nCommunity Impact: Representing Andhra Loyola Institute of Engineering & Technology (ALIET) in our mission to spread technical knowledge beyond the classroom.",
-                                    "A big thank you to the NSS unit and the faculty for this opportunity to contribute to such a meaningful extension program. The future is green, and it starts with education! 🌍✨"
+                                    "Interactive Session: Engaging with the bright minds at St. Joseph's Industrial Training Institute about the future of sustainability. 🤝",
+                                    "Community Impact: Representing Andhra Loyola Institute of Engineering & Technology (ALIET) in our mission to spread technical knowledge beyond the classroom.",
+                                    "A big thank you to the NSS unit and the faculty for this opportunity to contribute to such a meaningful extension program.",
+                                    "The future is green, and it starts with education! 🌍✨",
+                                    "☘️ Inspiring Future Innovators through Renewable Energy! 🌱⚡\nThank you once again for this wonderful experience! 🎓"
                                 ],
                                 span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2",
                             },

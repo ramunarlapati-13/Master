@@ -355,6 +355,14 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
     const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
     const items = mediaItems;
     const [hoveredId, setHoveredId] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -423,8 +431,8 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                     }
                                 }}
                                 animate={{
-                                    filter: hoveredId !== null && hoveredId !== item.id ? "blur(4px)" : "blur(0px)",
-                                    opacity: hoveredId !== null && hoveredId !== item.id ? 0.5 : 1,
+                                    filter: isMobile ? "blur(0px)" : (hoveredId !== null && hoveredId !== item.id ? "blur(4px)" : "blur(0px)"),
+                                    opacity: isMobile ? 1 : (hoveredId !== null && hoveredId !== item.id ? 0.5 : 1),
                                     scale: hoveredId === item.id ? 1.05 : 1,
                                 }}
                                 transition={{
