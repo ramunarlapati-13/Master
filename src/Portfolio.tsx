@@ -355,7 +355,7 @@ export default function Portfolio() {
                                 ...fileContainerStyle,
                                 ["--hover-text-color" as any]: "var(--accent-orange)",
                             }}
-                            onClick={() => window.open('https://dual-axis-solar-monitor.vercel.app/', '_blank')}
+                            onClick={() => window.open('https://ramublogs.vercel.app/blogs/solar-tracker-esp8266', '_blank')}
                         >
                             <InfoCard
                                 image="/images/solar-tracker-hero.png"
@@ -599,6 +599,28 @@ export default function Portfolio() {
                 <section id="gallery" className="fade-in-section"><div className="container">
                     <InteractiveBentoGallery
                         mediaItems={[
+                            {
+                                id: 108,
+                                type: "image",
+                                title: "🥇 1st Place at IEI Technical Paper Presentation! 🏆",
+                                desc: "Our project, the \"Sustainable Firefighter Monitoring Device,\" secured 1st place! It merges advanced safety technology with eco-conscious design.",
+                                url: "/images/sfms-1.jpg",
+                                images: [
+                                    "/images/sfms-1.jpg",
+                                    "/images/sfms-2.jpg",
+                                    "/images/sfms-3.jpg",
+                                    "/images/sfms-4.jpg",
+                                    "/images/sfms-5.jpg"
+                                ],
+                                descriptions: [
+                                    "🥇Thrilled to share that R. Srinivasa Manikanta and I have secured 1st place at the IEI Student Chapter’s Technical Paper Presentation! 🏆✨\n\nOur project, the \"Sustainable Firefighter Monitoring Device,\" was born out of a desire to merge advanced safety technology with eco-conscious design.",
+                                    "🚒🌿 Developing this solution was an intense, rewarding journey, and we are honored to have our research recognized by the jury.",
+                                    "As the Vice President of our IEI Student Chapter, I am deeply committed to fostering a culture of innovation and technical excellence within our community.",
+                                    "🛠️💡 Being involved in the organization while also actively participating in the research has been a great experience, and I am proud to lead by example alongside my fellow engineers.",
+                                    "A big thank you to the IEI Student Chapter for providing this incredible platform to showcase our work. 🤝 Looking forward to refining our project and continuing to push the boundaries of what we can achieve in the tech space! 🚀📈"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
                             {
                                 id: 107,
                                 type: "image",
