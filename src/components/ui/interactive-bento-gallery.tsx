@@ -14,6 +14,7 @@ export interface MediaItemType {
     url: string;
     span: string;
     images?: string[]; // Support for multiple images in a single project
+    descriptions?: string[]; // Descriptions for each image in the project gallery
 }
 
 // MediaItem component renders either a video or image based on item.type
@@ -234,12 +235,12 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 }}
                                 >
-                                    <h3 className="text-[var(--text-primary)] text-xl md:text-3xl font-bold mb-3 md:mb-4 leading-tight">
+                                    <h3 className="text-[var(--text-primary)] text-lg md:text-2xl font-bold mb-2 md:mb-3 leading-tight">
                                         {selectedItem.title}
                                     </h3>
-                                    <div className="w-12 h-1 bg-blue-500 rounded-full mb-4 md:mb-6" />
-                                    <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base leading-relaxed tracking-wide">
-                                        {selectedItem.desc}
+                                    <div className="w-12 h-1 bg-blue-500 rounded-full mb-3 md:mb-4" />
+                                    <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs md:text-sm leading-normal tracking-wide whitespace-pre-line">
+                                        {selectedItem.descriptions?.[activeImageIndex] || selectedItem.desc}
                                     </p>
 
                                     {/* Thumbnail Selection for Project Gallery */}
@@ -352,7 +353,7 @@ interface InteractiveBentoGalleryProps {
 
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
     const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
-    const [items] = useState(mediaItems);
+    const items = mediaItems;
     const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     return (

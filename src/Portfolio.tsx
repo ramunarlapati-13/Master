@@ -600,6 +600,124 @@ export default function Portfolio() {
                     <InteractiveBentoGallery
                         mediaItems={[
                             {
+                                id: 106,
+                                type: "image",
+                                title: "☘️ Inspiring Future Innovators through Renewable Energy! 🌱⚡",
+                                desc: "I am happy to share that I successfully completed a presentation today for students as part of the NSS Extension Programme on \"Renewable Integration.\"\n\nThe session focused on the diverse world of Renewable Energy Sources, covering everything from Tidal and Geothermal to Biomass, Wind, and Hydroelectric power.",
+                                url: "/images/mission-accomplished-1.jpg",
+                                images: [
+                                    "/images/mission-accomplished-1.jpg",
+                                    "/images/mission-accomplished-2.jpg",
+                                    "/images/mission-accomplished-3.jpg",
+                                    "/images/mission-accomplished-4.jpg",
+                                    "/images/mission-accomplished-5.jpg"
+                                ],
+                                descriptions: [
+                                    "☘️ Inspiring Future Innovators through Renewable Energy! 🌱⚡\nI am happy to share that I successfully completed a presentation today for students as part of the NSS Extension Programme on \"Renewable Integration.\"\nThe session focused on the diverse world of Renewable Energy Sources, covering everything from Tidal and Geothermal to Biomass, Wind, and Hydroelectric power.",
+                                    "It was incredibly rewarding to see the students’ curiosity and their satisfaction with the explanation of these vital technologies.",
+                                    "Key highlights of the day:\nHands-on Learning: Using my handmade poster to break down complex energy cycles. 🎨",
+                                    "Interactive Session: Engaging with the bright minds at St. Joseph's Industrial Training Institute about the future of sustainability. 🤝\nCommunity Impact: Representing Andhra Loyola Institute of Engineering & Technology (ALIET) in our mission to spread technical knowledge beyond the classroom.",
+                                    "A big thank you to the NSS unit and the faculty for this opportunity to contribute to such a meaningful extension program. The future is green, and it starts with education! 🌍✨"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2",
+                            },
+                            {
+                                id: 105,
+                                type: "image",
+                                title: "☘️ Empowering the next generation through sustainability! 🌱⚡",
+                                desc: "Empowering the next generation through sustainability! I am excited to share that tomorrow I’ll be conducting a presentation for students as part of the NSS Extension Program.\n\nMy focus will be on \"Types of Renewable Energy Sources,\" exploring how we can harness the power of nature to create a cleaner, greener future.",
+                                url: "/images/nss-extension-1.jpg",
+                                images: [
+                                    "/images/nss-extension-1.jpg",
+                                    "/images/nss-extension-2.jpg",
+                                    "/images/nss-extension-3.jpg",
+                                    "/images/nss-extension-4.jpg"
+                                ],
+                                descriptions: [
+                                    "☘️ Empowering the next generation through sustainability! 🌱⚡\nI am excited to share that tomorrow I’ll be conducting a presentation for students as part of the NSS Extension Program.",
+                                    "My focus will be on \"Types of Renewable Energy Sources,\" exploring how we can harness the power of nature—from tidal and geothermal to biomass and hydro—to create a cleaner, greener future. 🌍",
+                                    "There is something incredibly rewarding about taking complex engineering concepts and making them accessible and exciting for young minds. Preparing this visual aid was a great reminder of why we do what we do at Andhra Loyola Institute of Engineering & Technology.",
+                                    "A huge thanks to the NSS unit for organizing this outreach. Looking forward to an engaging session with the students!"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
+                                id: 104,
+                                type: "image",
+                                title: "Grand Finale 🎓 | Prototype to Professional IoT Solution",
+                                desc: "Today marks the successful completion of an intensive 20-day MSME RAMP Training Program (Entrepreneurship Skill Development Program). Our journey culminated in a final project submission and PPT presentation that I’m incredibly proud of.\n\nThe Mission: Developing a Smart IoT Patient Monitoring System...",
+                                url: "/images/grand-finale-1.jpg",
+                                images: [
+                                    "/images/grand-finale-1.jpg",
+                                    "/images/grand-finale-2.jpg",
+                                    "/images/grand-finale-3.jpg",
+                                    "/images/grand-finale-4.jpg",
+                                    "/images/grand-finale-5.jpg"
+                                ],
+                                descriptions: [
+                                    "Grand Finale 🎓 | From Prototype to Professional IoT Solution\n\nToday marks the successful completion of an intensive 20-day MSME RAMP Training Program (Entrepreneurship Skill Development Program). Our journey culminated in a final project submission and PPT presentation that I’m incredibly proud of.",
+                                    "The Mission: Developing a Smart IoT Patient Monitoring System—an ecosystem designed for real-time health tracking and rapid response.\n\nThe Technical Milestones:\n• Hardware: Interfaced the STM32F446RE board, leveraging its 180MHz processing power as a high-speed data hub.\n• Firmware: Implemented a robust FreeRTOS architecture to guarantee real-time responsiveness for critical vitals.",
+                                    "• Cloud Integration: Built a live Patient Dashboard that transforms raw sensor data into actionable medical insights.\n\nStanding with my team today, reflecting on our architecture diagrams, I’m proud of how we mastered the Perception, Network, and Application layers of IoT.",
+                                    "This workshop has been more than just a course; it’s been a launchpad into the world of Embedded Systems Engineering.",
+                                    "A massive shoutout to my teammates and our mentors for making this \"final day\" a true beginning for our careers in tech! 🌟\n\nSri Venkata Sai Moraboyina · Sudheer Babu Prathuri · Santhosh Juvvanapudi · Srinivasa Manikanta Rajapantula · Sri Chaitanya\n\nhashtag#Entrepreneurship hashtag#MSME hashtag#RAMP hashtag#STM32 hashtag#IoT hashtag#EmbeddedSystems hashtag#HealthcareInnovation hashtag#DigitalHealth hashtag#EngineeringExcellence"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
+                                id: 103,
+                                type: "image",
+                                title: "🎓 Academic Excellence: 1st Prize!",
+                                desc: "🎓 🥇 Grateful to be recognized for academic excellence!\nI am honored to share that I have secured 1st Prize for my 2nd-year semester results! 🎓 \n\nReceiving this award from Prof. CSRK Prasad, Vice-Chancellor of JNTUK Kakinada, during our 18th Annual Day celebrations was a truly memorable moment.",
+                                url: "/images/academic-1.png",
+                                images: [
+                                    "/images/academic-1.png",
+                                    "/images/academic-2.png",
+                                    "/images/academic-3.png"
+                                ],
+                                descriptions: [
+                                    "🎓 🥇 Grateful to be recognized for academic excellence!\nI am honored to share that I have secured 1st Prize for my 2nd-year semester results! 🎓\n\nReceiving this award from Prof. CSRK Prasad, Vice-Chancellor of JNTUK Kakinada, during our 18th Annual Day celebrations was a truly memorable moment.",
+                                    "This achievement is a testament to hard work, consistency, and the incredible support from my professors and peers. Looking forward to keeping this momentum going into the next semester! 🚀",
+                                    "hashtag#JNTUK hashtag#AcademicExcellence hashtag#Achievement hashtag#EngineeringLife hashtag#Kakinada hashtag#ProudMoment"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
+                                id: 102,
+                                type: "image",
+                                title: "🚀 IoT Milestone: Bridging Silicon to Cloud",
+                                desc: "I’m excited to share my latest project involving the integration of the STM32F446RE microcontroller with the Rightech IoT Cloud platform! \n\nCheck out the snippets below to see the hardware setup, the serial debug logs, and the final dashboard in action!",
+                                url: "/images/iot-milestone-1.jpg",
+                                images: [
+                                    "/images/iot-milestone-1.jpg",
+                                    "/images/iot-milestone-2.jpg",
+                                    "/images/iot-milestone-3.jpg",
+                                    "/images/iot-milestone-4.jpg"
+                                ],
+                                descriptions: [
+                                    "🚀 IoT Milestone: Bridging the Gap from Silicon to Cloud!\nI’m excited to share my latest project involving the integration of the STM32F446RE microcontroller with the Rightech IoT Cloud platform! 🌐🌡️\n\nIn this project, I successfully interfaced a DHT11 sensor to capture real-time environmental data and transmitted it to the cloud using the W10 Wi-Fi module.",
+                                    "🛠️ The Tech Stack:\n• Microcontroller: STM32F446RE (ARM Cortex-M4)\n• Sensor: DHT11 (Temperature & Humidity)\n• Connectivity: W10 Wi-Fi Module (via AT Commands & MQTT)\n• IDE: STM32CubeIDE using HAL drivers\n• Cloud Platform: Rightech IoT Services for data visualization",
+                                    "🔍 How it Works:\n• Data Acquisition: The STM32 reads the digital signal from the DHT11, parsing the raw data into readable Celsius and Humidity percentages.\n• Connectivity: Using UART communication, the STM32 sends instructions to the W10 module to connect to the local Wi-Fi and initialize an MQTT connection.\n• Cloud Integration: Data is published to specific topics (e.g., base/state/temperature).",
+                                    "Dashboard: Rightech receives the payload and visualizes the live stream, allowing for real-time monitoring of the environment.\n\n💡 Key Learning:\nOne of the most interesting challenges was managing the timing for the DHT11 protocol and ensuring the MQTT payload was correctly formatted for the Rightech JSON parser. Seeing the \"Online\" status turn green on the dashboard is always a satisfying moment for an embedded engineer!"
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
+                                id: 101,
+                                type: "image",
+                                title: "MSME Entrepreneurship Skill Development Program",
+                                desc: "Grateful to have completed a 5-day Entrepreneurship Skill Development Program as part of the 20-day MSME Workshop.\n\nDuring these five days, we gained practical exposure to key entrepreneurial concepts such as SWOT Analysis, Lean Canvas, Risk Management, Innovation, Resilience, and other essential business fundamentals. The sessions focused not only on how to start a venture, but also on how to think strategically, manage uncertainty, and build sustainable ideas.",
+                                url: "/images/msme-1.png",
+                                images: [
+                                    "/images/msme-1.png",
+                                    "/images/msme-2.jpg"
+                                ],
+                                descriptions: [
+                                    "Grateful to have completed a 5-day Entrepreneurship Skill Development Program as part of the 20-day MSME Workshop.\n\nDuring these five days, we gained practical exposure to key entrepreneurial concepts such as SWOT Analysis, Lean Canvas, Risk Management, Innovation, Resilience, and other essential business fundamentals. The sessions focused not only on how to start a venture, but also on how to think strategically, manage uncertainty, and build sustainable ideas.",
+                                    "A sincere thanks to Ms.E Yamini mam from the MSME Development Institute, Visakhapatnam, for delivering such insightful and inspiring sessions. Her practical examples and structured approach helped us understand real-world business challenges and opportunities within the MSME ecosystem.\n\nThis program has strengthened my entrepreneurial mindset and encouraged me to approach problems with innovation, planning, and resilience.\nLooking forward to applying these learnings in my future journey."
+                                ],
+                                span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-1",
+                            },
+                            {
                                 id: 100,
                                 type: "image",
                                 title: "ALIETAKE: Unified College Management 🔐",
